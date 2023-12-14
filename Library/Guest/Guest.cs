@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,11 +9,12 @@ namespace Library.Guest
 {
     public class Guest
     {
-        int GuestId { get; set; }
-        string Name { get; set; } = string.Empty;
-        string Email { get; set; } = string.Empty;
-        int Phone { get; set; }
-        string? Adress { get; set; }
+        [Key]
+        public int GuestId { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public int Phone { get; set; }
+        public string? Adress { get; set; }
 
         public static void GuestMenu()
         {
@@ -22,6 +24,7 @@ namespace Library.Guest
                 switch (Menu.WriteGuestMenu())
                 {
                     case "1":
+
                         break;
                     case "2":
                         break;

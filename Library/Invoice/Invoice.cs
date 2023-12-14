@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,11 +9,14 @@ using System.Threading.Tasks;
 namespace Library.Invoice
 {
     public class Invoice
-    {   
+    {
+        [Key]
         public int InvoiceID { get; set; }
         public int BookingID {  get; set; }
         public DateTime IssueDate { get; set; }
         public DateTime DueDate { get; set; }
+
+        [Column(TypeName = "decimal(18, 2)")]
         public decimal TotalAmount { get; set; }
         public bool IsPaid { get; set; }
         public static void InvoiceMenu()

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,11 +10,14 @@ namespace Library.Booking
 {
     public class Booking
     {
+        [Key]
         public int BookingID { get; set; }
         public int GuestID { get; set; }
         public int RoomID {  get; set; }
         public DateTime CheckInDate { get; set; }
         public DateTime CheckOutDate { get; set; }
+
+        [Column(TypeName = "decimal(18, 2)")]
         public decimal TotalPrice {  get; set; }
         public bool IsPaid {  get; set; }
 
