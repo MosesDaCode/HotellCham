@@ -1,4 +1,7 @@
-﻿using System;
+﻿using HotelLibrary.Rooms;
+using HotelLibrary.Rooms.DeleteRooms;
+using HotelLibrary.Rooms.ReadingRooms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -6,12 +9,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library.Room
+namespace HotelLibrary.Rooms
 {
     public class Room
     {
         [Key]
-        public int RoomID { get; set; }
+        public int RoomId { get; set; }
         public int RoomNumber { get; set; }
         public int Capacity {  get; set; }
         public bool IsOccupied {  get; set; }
@@ -20,6 +23,7 @@ namespace Library.Room
         public decimal PricePerNight { get; set; }
         public string RoomType { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
+        public bool IsRoomActive { get; set; }
 
         public static void RoomMenu()
         {
@@ -29,13 +33,21 @@ namespace Library.Room
                 switch (Menu.WriteRoomMenu())
                 {
                     case "1":
+                        CreateRoom.CreatingRoom();
                         break;
                     case "2":
+                        DisplayRoomMenu.ReadRooms();
                         break;
                     case "3":
+                        //Update Room
                         break;
                     case "4":
+                        SoftDeleteRooms.SoftDeleteRoom();
                         break;
+                    case "5":
+                        RoomDelete.DeleteRoom();
+                        break;
+                 
                     case "0":
                         Console.Clear();
                         isRoom = false;
@@ -50,3 +62,7 @@ namespace Library.Room
         }
     }
 }
+
+
+
+//lägg till foreign keys

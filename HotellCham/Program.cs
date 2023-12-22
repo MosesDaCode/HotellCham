@@ -1,8 +1,5 @@
-﻿using Library;
-using Library.Booking;
-using Library.Guest;
-using Library.Invoice;
-using Library.Room;
+﻿using HotelLibrary;
+using HotelLibrary.HotelData;
 
 namespace HotellCham
 {
@@ -39,7 +36,11 @@ namespace HotellCham
                         break;
                     case "0":
                         Console.Clear();
+                        Console.WriteLine("-----------");
+                        Console.WriteLine("|  Hejdå  |");
+                        Console.WriteLine("-----------");
                         Environment.Exit(0);
+                        
                         break;
                     default:
                         Console.WriteLine("Fel val av meny tryck på enter och testa igen.");
@@ -53,3 +54,11 @@ namespace HotellCham
         }
     }
 }
+
+
+
+// lägg till country och city på en guest.
+//lägg till foreign keys
+//Gör ett ERD
+//Skapa ett admin alternativ med password.
+//lägg in PUT (ge användaren alternativ på vad som ska uppdateras) (inkludera avaktivera)

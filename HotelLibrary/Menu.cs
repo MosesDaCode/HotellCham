@@ -6,11 +6,11 @@ using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
 
-namespace Library
+namespace HotelLibrary
 {
     public class Menu
     {
-       public static string MainMenu()
+        public static string MainMenu()
         {
             Console.WriteLine("----------------");
             Console.WriteLine("| Hotell Cham  |");
@@ -35,13 +35,16 @@ namespace Library
             Console.WriteLine("| Gäst meny   |");
             Console.WriteLine("--------------\n\n");
 
-            Console.WriteLine("------------------------");
-            Console.WriteLine("| 1. Skapa ny gäst     |");
-            Console.WriteLine("| 2. Se gäster         |");
-            Console.WriteLine("| 3. Uppdatera gäst    |");
-            Console.WriteLine("| 4. Radera gäst       |");
-            Console.WriteLine("| 0. Gå tillbaka       |");
-            Console.WriteLine("------------------------");
+            Console.WriteLine("------------------------------");
+            Console.WriteLine("| 1. Skapa ny gäst           |");
+            Console.WriteLine("| 2. Se aktiva gäster        |");
+            Console.WriteLine("| 3. Se icke aktiva gäster   |");
+            Console.WriteLine("| 4. Ändra gäst info         |");
+            Console.WriteLine("| 5. Avaktivera gäst         |");
+            Console.WriteLine("| 6. Återaktivera gäst       |");
+            Console.WriteLine("| 7. Radera gäst ur systemet |");
+            Console.WriteLine("| 0. Gå tillbaka             |");
+            Console.WriteLine("------------------------------");
             Console.Write("Val: ");
             string guestChoice = Console.ReadLine();
             return guestChoice;
@@ -53,13 +56,14 @@ namespace Library
             Console.WriteLine("| Rums meny  |");
             Console.WriteLine("--------------\n\n");
 
-            Console.WriteLine("------------------------");
-            Console.WriteLine("| 1. Skapa ett rum     |");
-            Console.WriteLine("| 2. Se rum            |");
-            Console.WriteLine("| 3. Uppdatera rum     |");
-            Console.WriteLine("| 4. Radera rum        |");
-            Console.WriteLine("| 0. Gå tillbaka       |");
-            Console.WriteLine("------------------------");
+            Console.WriteLine("-------------------------------");
+            Console.WriteLine("| 1. Skapa ett rum            |");
+            Console.WriteLine("| 2. Se rum                   |");
+            Console.WriteLine("| 3. Ändra rums info          |");
+            Console.WriteLine("| 5. Avaktivera rum           |");
+            Console.WriteLine("| 4. Radera rum ur systemet   |");
+            Console.WriteLine("| 0. Gå tillbaka              |");
+            Console.WriteLine("-------------------------------");
             Console.Write("Val: ");
             string roomChoice = Console.ReadLine();
             return roomChoice;
@@ -98,6 +102,23 @@ namespace Library
             Console.Write("Val: ");
             string invoiceChoice = Console.ReadLine();
             return invoiceChoice;
+        }
+        public static string ReadingRoomsMenu()
+        {
+            Console.WriteLine("------------------------------");
+            Console.WriteLine("| Välj vilka rum du vill se  |");
+            Console.WriteLine("------------------------------\n\n");
+
+            Console.WriteLine("------------------------------");
+            Console.WriteLine("| 1. Se alla rum             |");
+            Console.WriteLine("| 2. Se tillgängliga rum     |");
+            Console.WriteLine("| 3. Se upptagna rum         |");
+            Console.WriteLine("| 4. Se icke aktiva rum      |");
+            Console.WriteLine("| 0. Gå tillbaka             |");
+            Console.WriteLine("------------------------------");
+            Console.Write("Val: ");
+            string roomMenuChoice = Console.ReadLine();
+            return roomMenuChoice;
         }
     }
 }

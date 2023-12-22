@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library.Guest
+namespace HotelLibrary.CheckinCheckouts
 {
-    public class GuestCreation : Guest
+    public class CheckOut
     {
-        
+
     }
 }

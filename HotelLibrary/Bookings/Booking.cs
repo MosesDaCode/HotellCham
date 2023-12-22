@@ -6,20 +6,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library.Booking
+namespace HotelLibrary.Bookings
 {
     public class Booking
     {
         [Key]
         public int BookingID { get; set; }
         public int GuestID { get; set; }
-        public int RoomID {  get; set; }
+        public int RoomID { get; set; }
         public DateTime CheckInDate { get; set; }
         public DateTime CheckOutDate { get; set; }
 
         [Column(TypeName = "decimal(18, 2)")]
-        public decimal TotalPrice {  get; set; }
-        public bool IsPaid {  get; set; }
+        public decimal TotalPrice { get; set; }
+        public int? ExtraBed { get; set; }
+        public bool IsPaid { get; set; }
+        public bool IsBookingActive { get; set; }
 
         public static void BookingMenu()
         {
@@ -50,3 +52,20 @@ namespace Library.Booking
         }
     }
 }
+
+
+
+//Console.WriteLine("(Valbart, Annars tryck på enter)");
+//Console.Write("Hur många extrasängar behövs?: ");
+//int extraBeds;
+//do
+//{
+//    Console.WriteLine("(Valbart, Annars tryck på enter)");
+//    Console.Write("Hur många extrasängar behövs?: ");
+//    if (!int.TryParse(Console.ReadLine(), out extraBeds))
+//    {
+//        Console.WriteLine("\nDu måste ange ett för hur många sängar som ska läggas till.");
+//        Console.WriteLine("Tryck på enter och försök igen...");
+//        Console.ReadKey();
+//    }
+//} while (true);

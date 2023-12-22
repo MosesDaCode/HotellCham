@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library.CheckinCheckout
+namespace HotelLibrary.CheckinCheckouts
 {
-    public class CheckOut
+    public class CheckIn
     {
 
     }

@@ -6,13 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library.Invoice
+namespace HotelLibrary.HotelData
 {
     public class Invoice
     {
         [Key]
         public int InvoiceID { get; set; }
-        public int BookingID {  get; set; }
+        public int BookingID { get; set; }
         public DateTime IssueDate { get; set; }
         public DateTime DueDate { get; set; }
 

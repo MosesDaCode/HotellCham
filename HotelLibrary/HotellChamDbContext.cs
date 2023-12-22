@@ -1,17 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Library.Booking;
-using Library.Guest;
-using Library.Invoice;
-using Library.Room;
-using Microsoft.EntityFrameworkCore;
-namespace HotellCham
+﻿using Microsoft.EntityFrameworkCore;
+using HotelLibrary.Rooms;
+using HotelLibrary.Guests;
+using HotelLibrary.Bookings;
+using HotelLibrary.Invoices;
+
+namespace HotelLibrary
 {
     public class HotellChamDbContext : DbContext
     {
+        public HotellChamDbContext()
+        {
+        }
+        public HotellChamDbContext(DbContextOptions<HotellChamDbContext> options) : base(options)
+        {
+        }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Guest> Guests { get; set; }
         public DbSet<Booking> Bookings { get; set; }
