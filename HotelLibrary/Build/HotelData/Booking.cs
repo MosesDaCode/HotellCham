@@ -6,22 +6,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HotelLibrary.Bookings
+namespace HotelLibrary.Build.HotelData
 {
     public class Booking
     {
         [Key]
         public int BookingID { get; set; }
-        public int GuestID { get; set; }
-        public int RoomID { get; set; }
+
+        [Required]
         public DateTime CheckInDate { get; set; }
+
+        [Required]
         public DateTime CheckOutDate { get; set; }
 
+        [Required]
         [Column(TypeName = "decimal(18, 2)")]
         public decimal TotalPrice { get; set; }
+
+        [Range(0,2)]
         public int? ExtraBed { get; set; }
+
         public bool IsPaid { get; set; }
+
         public bool IsBookingActive { get; set; }
+
+        public Room Room { get; set; }
 
         public static void BookingMenu()
         {

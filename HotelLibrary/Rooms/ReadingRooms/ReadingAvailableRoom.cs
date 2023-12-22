@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HotelLibrary.Build.HotelData;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,7 @@ namespace HotelLibrary.Rooms.ReadingRooms
             using (var dbRoom = new HotelChamDbContext())
             {
                 var activeRooms = dbRoom.Rooms
-                    .Where(room => room.IsOccupied == true || room.IsRoomActive == true)
+                    .Where(room => room.IsOccupied == false && room.IsRoomActive == true)
                     .OrderBy(roomIsActive => roomIsActive.RoomId)
                     .ToList();
                 if (activeRooms.Any())

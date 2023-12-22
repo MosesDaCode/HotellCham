@@ -1,4 +1,5 @@
-﻿using HotelLibrary.Rooms.ReadingRooms;
+﻿using HotelLibrary.Build.HotelData;
+using HotelLibrary.Rooms.ReadingRooms;
 using System;
 using System.Collections.Generic;
 using System.Linq;

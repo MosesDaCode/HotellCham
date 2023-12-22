@@ -1,4 +1,4 @@
-﻿using HotelLibrary.HotelData;
+﻿using HotelLibrary.Build.HotelData;
 using HotelLibrary.Rooms;
 using System;
 using System.Collections.Generic;
@@ -102,7 +102,8 @@ namespace HotelLibrary.Rooms
                         PricePerNight = roomPricePerNight,
                         RoomType = roomTypeChoice,
                         Description = descriptRoom,
-                        IsRoomActive = true
+                        IsRoomActive = true,
+                        IsOccupied = true
                     };
                     dbRoom.Add(newRoom);
                     dbRoom.SaveChanges();
@@ -118,7 +119,7 @@ namespace HotelLibrary.Rooms
                 Console.Clear();
             }
         }
-        public static string RoomTypeSwitch()
+        private static string RoomTypeSwitch()
         {
             Console.WriteLine("\nVad är det för typ av rum?");
             Console.WriteLine("1. EnkelRum");

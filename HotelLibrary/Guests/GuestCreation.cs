@@ -1,67 +1,51 @@
-﻿using HotelLibrary.HotelData;
+﻿using HotelLibrary.Build.HotelData;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-namespace HotelLibrary.Guests
-{
-    public class GuestCreation
-    {
-        public static void CreateGuest()
-        {
-            Console.Clear();
-            Console.WriteLine("--------------------");
-            Console.WriteLine("| Skapa Gäst       |");
-            Console.WriteLine("| 0. gå tillbaka   |");
-            Console.WriteLine("-------------------\n\n");
-            using (var dbGuest = new HotelChamDbContext())
-            {
-                Console.Write("\nAnge förnamn till gästen: ");
-                var firstName = Console.ReadLine();
-                if (firstName != null && firstName != "0")
-                {
-                    Console.Write("\nAnge efternamn till gästen: ");
-                    var lastName = Console.ReadLine();
-                    if (lastName != null && lastName != "0")
-                    {
-                        Console.Write("\nAnge ett email till gästen: ");
-                        var guestEmail = Console.ReadLine();
-                        if (guestEmail != null && guestEmail != "0")
-                        {
-                            int guestNum;
-                            do
-                            {
-                                Console.Write("\nAnge ett Tel-nummer till gästen: ");
-                                if (!int.TryParse(Console.ReadLine(), out guestNum))
-                                {
-                                    Console.WriteLine("Du måste ange ett nummer!!!");
-                                    Console.WriteLine("Försök igen...");
-                                }
-                                else if (guestNum == 0)
-                                {
-                                    Console.Clear();
-                                    return;
-                                }
-                                else
-                                {
-                                    break;
-                                }
-                            } while (true);
+namespace HotelLibrary.Build;
 
-                            Console.WriteLine("\nValbart, Annars tryck på enter.");
+public class GuestCreation
+{
+    public static void CreateGuest()
+    {
+        Console.Clear();
+        Console.WriteLine("--------------------");
+        Console.WriteLine("| Skapa Gäst       |");
+        Console.WriteLine("| 0. gå tillbaka   |");
+        Console.WriteLine("-------------------\n\n");
+        using (var dbGuest = new HotelChamDbContext())
+        {
+            Console.Write("\nAnge förnamn till gästen: ");
+            var firstName = Console.ReadLine();
+            if (!string.IsNullOrEmpty(firstName) && firstName != "0")
+            {
+                Console.Write("\nAnge efternamn till gästen: ");
+                var lastName = Console.ReadLine();
+                if (!string.IsNullOrEmpty(lastName) && lastName != "0")
+                {
+                    Console.Write("\nAnge ett email till gästen: ");
+                    var guestEmail = Console.ReadLine();
+                    if (!string.IsNullOrEmpty(guestEmail) && guestEmail != "0")
+                    {
+                        Console.Write("\nAnge ett Tel-nummer till gästen: ");
+                        var guestNum = Console.ReadLine();
+                        if (!string.IsNullOrEmpty(guestNum) && guestNum != "0")
+                        {
+                            Console.WriteLine("\n(Valbart, Annars tryck på enter.)");
                             Console.Write("Ange en hemadress till gästen: ");
                             var guestAdress = Console.ReadLine();
-                            if (guestAdress != "0")
+                            if (guestAdress != "0" && !string.IsNullOrEmpty(guestAdress))
                             {
-                                Console.WriteLine("\n(Om du lagt till adress)");
                                 Console.Write("Ange ett land för gästen: ");
                                 var guestCountry = Console.ReadLine();
-                                if (guestCountry != "0")
+                                if (guestCountry != "0" && !string.IsNullOrEmpty(guestCountry))
                                 {
                                     Console.Write("\nAnge hemstad för gästen: ");
                                     var guestCity = Console.ReadLine();
-                                    if (guestCity != "0")
+                                    if (guestCity != "0" && !string.IsNullOrEmpty(guestCity))
                                     {
                                         var newGuest = new Guest()
                                         {
@@ -85,7 +69,7 @@ namespace HotelLibrary.Guests
                                     }
                                     else
                                     {
-                                        Console.WriteLine("Error!!!");
+                                        Console.WriteLine("Du måste ange en hemstad till gästen!");
                                     }
                                 }
                                 else if (guestCountry == "0")
@@ -95,11 +79,25 @@ namespace HotelLibrary.Guests
                                 }
                                 else
                                 {
-                                    Console.WriteLine("Error!!");
+                                    Console.WriteLine("Du måste ange ett hemland till gästen");
                                 }
-
-
                             }
+                            else if (string.IsNullOrEmpty(guestAdress))
+                            {
+                                var newGuest = new Guest()
+                                {
+                                    FirstName = firstName,
+                                    LastName = lastName,
+                                    Email = guestEmail,
+                                    Phone = guestNum,
+                                    IsGuestActive = true
+                                };
+                                dbGuest.Guests.Add(newGuest);
+                                dbGuest.SaveChanges();
+                                Console.WriteLine("Utan Adress, Land, Stad.");
+                                Console.WriteLine("Gästen har sparats i systemet!");
+                            }
+
                             else if (guestAdress == "0")
                             {
                                 Console.Clear();
@@ -111,42 +109,53 @@ namespace HotelLibrary.Guests
                                 Console.WriteLine("Tryck på enter för att gå tillbaka...");
                             }
                         }
-                        else if (guestEmail == "0")
+                        else if (guestNum == "0")
                         {
                             Console.Clear();
                             return;
                         }
                         else
                         {
-                            Console.WriteLine("Error!!");
+                            Console.WriteLine("Error!!!");
                             Console.WriteLine("Tryck på enter för att gå tillbaka...");
                         }
                     }
-                    else if (lastName == "0")
+                    else if (guestEmail == "0")
                     {
                         Console.Clear();
                         return;
                     }
                     else
                     {
-                        Console.WriteLine("Error...");
+                        Console.WriteLine("Error!!");
                         Console.WriteLine("Tryck på enter för att gå tillbaka...");
                     }
+
                 }
-                else if (firstName == "0")
+                else if (lastName == "0")
                 {
                     Console.Clear();
                     return;
                 }
                 else
                 {
-                    Console.WriteLine("Error!!!");
+                    Console.WriteLine("Error...");
                     Console.WriteLine("Tryck på enter för att gå tillbaka...");
                 }
-                Console.WriteLine("Tryck på enter för att fortsätta...");
-                Console.ReadLine();
-                Console.Clear();
             }
+            else if (firstName == "0")
+            {
+                Console.Clear();
+                return;
+            }
+            else
+            {
+                Console.WriteLine("Error!!!");
+                Console.WriteLine("Tryck på enter för att gå tillbaka...");
+            }
+            Console.WriteLine("Tryck på enter för att fortsätta...");
+            Console.ReadLine();
+            Console.Clear();
         }
     }
 }

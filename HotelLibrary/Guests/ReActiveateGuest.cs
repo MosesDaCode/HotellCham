@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HotelLibrary.Build.HotelData;
 using HotelLibrary.Guests.ReadGuests;
 
 namespace HotelLibrary.Guests

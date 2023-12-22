@@ -13,6 +13,7 @@ namespace HotelLibrary.Rooms.ReadingRooms
             bool isReadingRooms = true;
             while (isReadingRooms)
             {
+                Console.Clear();
                 switch (Menu.ReadingRoomsMenu())
                 {
                     case "1":

@@ -5,9 +5,8 @@ using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using HotelLibrary.Rooms;
 
-namespace HotelLibrary.HotelData
+namespace HotelLibrary.Build.HotelData
 {
     public class HotelDataInitializer
     {
@@ -27,7 +26,7 @@ namespace HotelLibrary.HotelData
                     FirstName = "Mousa",
                     LastName = "Chammas",
                     Email = "cham.mos@hotmail.com",
-                    Phone = 123456789,
+                    Phone = "123456789",
                     IsGuestActive = true
                 });
             }
@@ -38,7 +37,7 @@ namespace HotelLibrary.HotelData
                     FirstName = "Snel",
                     LastName = "Hest",
                     Email = "snelhest@gmail.com",
-                    Phone = 123456789,
+                    Phone = "123456789",
                     Adress = "Svea vägen 23",
                     Country = "Sweden",
                     City = "Stockholm",
@@ -52,7 +51,7 @@ namespace HotelLibrary.HotelData
                     FirstName = "Örjan",
                     LastName = "Öppnar",
                     Email = "öppnar.örjan@gmail.com",
-                    Phone = 123456789,
+                    Phone = "123456789",
                     Adress = "Sten Vägen 124",
                     Country = "Sweden",
                     City = "Norrland",
@@ -66,7 +65,7 @@ namespace HotelLibrary.HotelData
                     FirstName = "Joakim",
                     LastName = "Nilsson",
                     Email = "jocke.nisse@hotmail.com",
-                    Phone = 123456789,
+                    Phone = "123456789",
                     Adress = "S:t görans gatan 2",
                     Country = "Sweden",
                     City = "Stockholm",
@@ -89,7 +88,7 @@ namespace HotelLibrary.HotelData
                     IsRoomActive = true
                 });
             }
-            if (!dbContext.Rooms.Any(g => g.RoomNumber == 101))
+            if (!dbContext.Rooms.Any(g => g.RoomNumber == 102))
             {
                 dbContext.Rooms.Add(new Room
                 {
@@ -99,6 +98,32 @@ namespace HotelLibrary.HotelData
                     PricePerNight = 780,
                     RoomType = "Singelrum",
                     Description = "Ett Trevligt singelrum med utsikt över Mälarsjön",
+                    IsRoomActive = true
+                });
+            }
+            if (!dbContext.Rooms.Any(g => g.RoomNumber == 103))
+            {
+                dbContext.Rooms.Add(new Room
+                {
+                    RoomNumber = 103,
+                    Capacity = 1,
+                    IsOccupied = false,
+                    PricePerNight = 1090,
+                    RoomType = "Dubbelrum",
+                    Description = "Ett Trevligt dubbelrum med utsikt över Mälarsjön, inkluderar en dubbelsäng med en större dusch.",
+                    IsRoomActive = true
+                });
+            }
+            if (!dbContext.Rooms.Any(g => g.RoomNumber == 104))
+            {
+                dbContext.Rooms.Add(new Room
+                {
+                    RoomNumber = 104,
+                    Capacity = 1,
+                    IsOccupied = false,
+                    PricePerNight = 1090,
+                    RoomType = "Dubbelrum",
+                    Description = "Ett Trevligt dubbelrum med utsikt över Mälarsjön, inkluderar en dubbelsäng med en större dusch.",
                     IsRoomActive = true
                 });
             }

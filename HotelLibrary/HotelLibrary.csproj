@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <Folder Include="Bookings\" />
-    <Folder Include="Build\" />
     <Folder Include="Invoices\" />
   </ItemGroup>
 

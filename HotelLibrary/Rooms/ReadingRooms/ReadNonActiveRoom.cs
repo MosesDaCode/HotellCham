@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HotelLibrary.Build.HotelData;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,7 @@ namespace HotelLibrary.Rooms.ReadingRooms
             using (var dbRoom = new HotelChamDbContext())
             {
                 var nonActiveRooms = dbRoom.Rooms
-                    .Where(room => room.IsRoomActive == true)
+                    .Where(room => room.IsRoomActive == false)
                     .OrderBy(roomIsNonActive => roomIsNonActive.RoomId)
                     .ToList();
                 if (nonActiveRooms.Any())
@@ -40,7 +41,7 @@ namespace HotelLibrary.Rooms.ReadingRooms
                 }
                 else
                 {
-                    Console.WriteLine("Alla rum verkar aktiva.");
+                    Console.WriteLine("Alla rum verkar vara aktiva.");
                     Console.WriteLine("Tryck på enter för att gå tillbaka...");
                 }
                 Console.ReadKey();

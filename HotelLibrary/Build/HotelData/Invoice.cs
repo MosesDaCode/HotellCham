@@ -6,18 +6,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HotelLibrary.HotelData
+namespace HotelLibrary.Build.HotelData
 {
     public class Invoice
     {
         [Key]
         public int InvoiceID { get; set; }
-        public int BookingID { get; set; }
+
+        [Required]
         public DateTime IssueDate { get; set; }
+
+        [Required]
         public DateTime DueDate { get; set; }
 
         [Column(TypeName = "decimal(18, 2)")]
         public decimal TotalAmount { get; set; }
+
         public bool IsPaid { get; set; }
         public static void InvoiceMenu()
         {
