@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HotelLibrary.Migrations
 {
     [DbContext(typeof(HotelChamDbContext))]
-    [Migration("20231222124128_DataBaseCreate")]
-    partial class DataBaseCreate
+    [Migration("20231223145539_AddedRoomSizeEntity")]
+    partial class AddedRoomSizeEntity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -172,6 +172,9 @@ namespace HotelLibrary.Migrations
                         .HasColumnType("decimal(18, 2)");
 
                     b.Property<int>("RoomNumber")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoomSize")
                         .HasColumnType("int");
 
                     b.Property<string>("RoomType")

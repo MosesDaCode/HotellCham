@@ -1,4 +1,4 @@
-﻿using HotelLibrary.Build.HotelData;
+﻿using HotelLibrary.Build.Service;
 using HotelLibrary.Guests.ReadGuests;
 using System;
 using System.Collections.Generic;
@@ -23,13 +23,13 @@ namespace HotelLibrary.Guests.DeleteGuests
             using (var dbSoftDeleteGuest = new HotelChamDbContext())
             {
 
-                Console.Write("Ange id för gästen du vill ta bort: ");
+                Console.Write("\nAnge id för gästen du vill ta bort: ");
                 int guestIdToDeactivate;
                 do
                 {
                     if (!int.TryParse(Console.ReadLine(), out guestIdToDeactivate))
                     {
-                        Console.WriteLine("ID existerar inte!");
+                        Console.WriteLine("\nID existerar inte!");
                     }
                     else if (guestIdToDeactivate == 0)
                     {
@@ -45,10 +45,11 @@ namespace HotelLibrary.Guests.DeleteGuests
                 var guestToSoftDelete = dbSoftDeleteGuest.Guests.Find(guestIdToDeactivate);
                 guestToSoftDelete.IsGuestActive = false;
                 dbSoftDeleteGuest.SaveChanges();
-                Console.WriteLine("Gästen är nu avaktiverad!");
+                Console.WriteLine($"\n{guestToSoftDelete.LastName}, {guestToSoftDelete.FirstName} är nu avaktiverad!");
             }
-            Console.WriteLine("Tryck på enter för att fortsätta...");
+            Console.WriteLine("\nTryck på enter för att fortsätta...");
             Console.ReadKey();
+            Console.Clear();
         }
     }
 }

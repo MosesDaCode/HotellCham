@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HotelLibrary.Rooms.ReadingRooms
 {
-    public class DisplayRoomMenu
+    public class DisplayReadRoomMenu
     {
         public static void ReadRooms()
         {

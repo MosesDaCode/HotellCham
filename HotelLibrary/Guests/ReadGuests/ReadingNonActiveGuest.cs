@@ -1,4 +1,4 @@
-﻿using HotelLibrary.Build.HotelData;
+﻿using HotelLibrary.Build.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,6 @@ namespace HotelLibrary.Guests.ReadGuests
             Console.Clear();
             Console.WriteLine("-------------------------");
             Console.WriteLine("| Se icke aktiva gäster |");
-            Console.WriteLine("| 0. gå tillbaka        |");
             Console.WriteLine("------------------------\n\n");
             using (var dbGuest = new HotelChamDbContext())
             {
@@ -41,17 +40,13 @@ namespace HotelLibrary.Guests.ReadGuests
                             Console.WriteLine($"City: {guest.City}");
                             Console.WriteLine($"Country: {guest.Country}");
                         }
-                        Console.WriteLine($"Active: {guest.IsGuestActive}");
                         Console.WriteLine("------------------------------");
                     }
                 }
                 else
                 {
                     Console.WriteLine("Inga gäster hittades.");
-                    Console.WriteLine("Tryck på enter för att gå tillbaka...");
                 }
-                Console.ReadLine();
-                Console.Clear();
             }
         }
     }

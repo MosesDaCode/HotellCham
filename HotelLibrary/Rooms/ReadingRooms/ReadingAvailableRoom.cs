@@ -1,4 +1,4 @@
-﻿using HotelLibrary.Build.HotelData;
+﻿using HotelLibrary.Build.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +26,7 @@ namespace HotelLibrary.Rooms.ReadingRooms
                 if (activeRooms.Any())
                 {
                     Console.WriteLine("Lista av tillgängliga rum");
-                    Console.WriteLine("----------------------------------------");
+                    Console.WriteLine("---------------------------------------------------------------------------");
                     foreach (var room in activeRooms)
                     {
                         Console.WriteLine($"RumsID: {room.RoomId}");
@@ -35,7 +35,7 @@ namespace HotelLibrary.Rooms.ReadingRooms
                         Console.WriteLine($"Pris per natt: {room.PricePerNight}");
                         Console.WriteLine($"Rums typ: {room.RoomType}");
                         Console.WriteLine($"Rums beskrivning: {room.Description}");
-                        Console.WriteLine("----------------------------------------");
+                        Console.WriteLine("---------------------------------------------------------------------------");
 
                     }
                 }

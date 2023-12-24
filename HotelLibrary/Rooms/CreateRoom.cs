@@ -1,4 +1,5 @@
-﻿using HotelLibrary.Build.HotelData;
+﻿using HotelLibrary.Build.Service;
+using HotelLibrary.Build.Service;
 using HotelLibrary.Rooms;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace HotelLibrary.Rooms
             Console.WriteLine("| Skapa Rum        |");
             Console.WriteLine("| 0. gå tillbaka   |");
             Console.WriteLine("-------------------\n\n");
-            
+
             using (var dbRoom = new HotelChamDbContext())
             {
                 int roomNum;
@@ -26,7 +27,7 @@ namespace HotelLibrary.Rooms
                     Console.Write("Ange ett rumsnummer: ");
                     if (!int.TryParse(Console.ReadLine(), out roomNum))
                     {
-                        Console.WriteLine("Du måste ange ett nummer till rummet!!");
+                        Console.WriteLine("\nDu måste ange ett nummer till rummet!!");
                         Console.WriteLine("Tryck på enter och försök igen...");
                         Console.ReadKey();
                     }
@@ -42,17 +43,18 @@ namespace HotelLibrary.Rooms
 
                 } while (true);
 
-                int capacityNum;
+                int roomSize;
                 do
                 {
-                    Console.Write("\nHur många får plats i rummet?: "); 
-                    if (!int.TryParse(Console.ReadLine(), out capacityNum))
+                    Console.WriteLine("\n(Ange i Kvm)");
+                    Console.Write("Rumsstorlek:  ");
+                    if (!int.TryParse(Console.ReadLine(), out roomSize))
                     {
-                        Console.WriteLine("\nDu måste ange ett nummer för rums kapacitet!!");
+                        Console.WriteLine("Du måste ange storlek i siffror");
                         Console.WriteLine("Tryck på enter och försök igen...");
                         Console.ReadKey();
                     }
-                    else if (capacityNum == 0)
+                    else if (roomSize == 0)
                     {
                         Console.Clear();
                         return;
@@ -61,94 +63,118 @@ namespace HotelLibrary.Rooms
                     {
                         break;
                     }
-
                 } while (true);
+                
+                
 
-                int roomPricePerNight;
-                do
-                {
-                    Console.Write("\nAnge ett pris per natt för rummet: ");
-                    if (!int.TryParse(Console.ReadLine(), out roomPricePerNight))
+                    int capacityNum;
+                    do
                     {
-                        Console.WriteLine("\nDu måste ange ett ogiltigt pris!!");
-                        Console.WriteLine("Tryck på enter och försök igen...");
-                        Console.ReadKey();
+                        Console.Write("\nAnge antal gäster som får plats i rummet?: ");
+                        if (!int.TryParse(Console.ReadLine(), out capacityNum))
+                        {
+                            Console.WriteLine("\nDu måste ange ett nummer för rums kapacitet!!");
+                            Console.WriteLine("Tryck på enter och försök igen...");
+                            Console.ReadKey();
+                        }
+                        else if (capacityNum == 0)
+                        {
+                            Console.Clear();
+                            return;
+                        }
+                        else
+                        {
+                            break;
+                        }
+
+                    } while (true);
+
+                    int roomPricePerNight;
+                    do
+                    {
+                        Console.Write("\nAnge ett pris per natt för rummet: ");
+                        if (!int.TryParse(Console.ReadLine(), out roomPricePerNight))
+                        {
+                            Console.WriteLine("\nDu måste ange ett giltigt pris!!");
+                            Console.WriteLine("Tryck på enter och försök igen...");
+                            Console.ReadKey();
+                        }
+                        else if (roomPricePerNight == 0)
+                        {
+                            Console.Clear();
+                            return;
+                        }
+                        else
+                        {
+                            break;
+                        }
+
+                    } while (true);
+
+                    var roomTypeChoice = RoomTypeSwitch();
+
+
+                    Console.WriteLine("\nSkriv en liten beskrivning på rummet");
+                    Console.Write("Beskrivning: ");
+                    var descriptRoom = Console.ReadLine();
+
+                    if (!string.IsNullOrEmpty(descriptRoom) && descriptRoom != "0")
+                    {
+                        var newRoom = new Room()
+                        {
+                            RoomNumber = roomNum,
+                            Capacity = capacityNum,
+                            RoomSize = roomSize,
+                            PricePerNight = roomPricePerNight,
+                            RoomType = roomTypeChoice,
+                            Description = descriptRoom,
+                            IsRoomActive = true,
+                            IsOccupied = true
+                        };
+                        dbRoom.Add(newRoom);
+                        dbRoom.SaveChanges();
+                        Console.WriteLine($"\nRum {newRoom.RoomNumber} finns nu i systemet!!");
                     }
-                    else if (roomPricePerNight == 0)
+                    else if (descriptRoom == "0")
                     {
                         Console.Clear();
                         return;
                     }
-                    else
-                    {
-                        break;
-                    }
-
-                } while (true);
-
-                var roomTypeChoice = RoomTypeSwitch();
-
-                
-                Console.WriteLine("Skriv en liten beskrivning på rummet");
-                Console.Write("Beskrivning: ");
-                var descriptRoom = Console.ReadLine();
-                
-                if (!string.IsNullOrEmpty(descriptRoom) && descriptRoom != "0" )
-                {
-                    var newRoom = new Room()
-                    {
-                        RoomNumber = roomNum,
-                        Capacity = capacityNum,
-                        PricePerNight = roomPricePerNight,
-                        RoomType = roomTypeChoice,
-                        Description = descriptRoom,
-                        IsRoomActive = true,
-                        IsOccupied = true
-                    };
-                    dbRoom.Add(newRoom);
-                    dbRoom.SaveChanges();
-                    Console.WriteLine("Rummet finns nu i systemet!!");
-                }
-                else if (descriptRoom == "0")
-                {
-                    Console.Clear();
-                    return;
-                }
-                Console.WriteLine("Tryck på enter för att fortsätta...");
+                Console.WriteLine("\nTryck på enter för att fortsätta...");
                 Console.ReadLine();
                 Console.Clear();
             }
         }
-        private static string RoomTypeSwitch()
-        {
-            Console.WriteLine("\nVad är det för typ av rum?");
-            Console.WriteLine("1. EnkelRum");
-            Console.WriteLine("2. DubbelRum");
-            Console.WriteLine("0. Gå Tillbaka");
-            string roomTypeChoice = Console.ReadLine();
-            bool isRoomType = true;
-            while (isRoomType)
+            public static string RoomTypeSwitch()
             {
-                switch (roomTypeChoice)
+                Console.WriteLine("\nVad är det för typ av rum?");
+                Console.WriteLine("1. EnkelRum");
+                Console.WriteLine("2. DubbelRum");
+                Console.WriteLine("0. Gå Tillbaka");
+                string roomTypeChoice = Console.ReadLine();
+                bool isRoomType = true;
+                while (isRoomType)
                 {
-                    case "1":
-                        string singelRoom = "Enkelrum";
-                        return singelRoom;
-                    case "2":
-                        string doubleRoom = "Dubbelrum";
-                        return doubleRoom;
-                    case "0":
-                        Console.Clear();
-                        isRoomType = false;
-                        break;
-                    default:
-                        Console.WriteLine("\nFel val av meny tryck på enter och testa igen.");
-                        Console.ReadKey();
-                        Console.Clear();
-                        break;
+                    switch (roomTypeChoice)
+                    {
+                        case "1":
+                            string singelRoom = "Enkelrum";
+                            return singelRoom;
+                        case "2":
+                            string doubleRoom = "Dubbelrum";
+                            return doubleRoom;
+                        case "0":
+                            Console.Clear();
+                            isRoomType = false;
+                            break;
+                        default:
+                            Console.WriteLine("\nFel val av meny tryck på enter och testa igen.");
+                            Console.ReadKey();
+                            Console.Clear();
+                            break;
+                    }
                 }
+                return roomTypeChoice;
             }
-            return roomTypeChoice;
         }
     }
-}

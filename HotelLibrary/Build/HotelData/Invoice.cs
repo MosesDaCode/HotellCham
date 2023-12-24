@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HotelLibrary.Build.HotelData
+namespace HotelLibrary.Build.Service
 {
     public class Invoice
     {

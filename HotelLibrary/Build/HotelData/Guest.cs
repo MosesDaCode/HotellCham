@@ -9,7 +9,7 @@ using HotelLibrary.Guests;
 using HotelLibrary.Guests.DeleteGuests;
 using HotelLibrary.Guests.ReadGuests;
 
-namespace HotelLibrary.Build.HotelData
+namespace HotelLibrary.Build.Service
 {
     public class Guest
     {
@@ -60,7 +60,7 @@ namespace HotelLibrary.Build.HotelData
                         GuestCreation.CreateGuest();
                         break;
                     case "2":
-                        ReadingActiveGuest.ReadActiveGuests();
+                        DisplayReadGuestMenu.ReadGuests();
                         break;
                     case "3":
                         ReadingNonActiveGuest.ReadNonActiveGuests();

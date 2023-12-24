@@ -1,6 +1,7 @@
 ﻿using HotelLibrary.Rooms;
 using HotelLibrary.Rooms.DeleteRooms;
 using HotelLibrary.Rooms.ReadingRooms;
+using HotelLibrary.Rooms.UpdateRooms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -9,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HotelLibrary.Build.HotelData
+namespace HotelLibrary.Build.Service
 {
     public class Room
     {
@@ -26,11 +27,15 @@ namespace HotelLibrary.Build.HotelData
 
         public bool IsOccupied { get; set; }
 
+        [Required]
         [Column(TypeName = "decimal(18, 2)")]
         public decimal PricePerNight { get; set; }
 
         [Required]
         public string RoomType { get; set; } = string.Empty;
+
+        [Required]
+        public int RoomSize { get; set; }
 
         [Required]
         [MaxLength(250)]
@@ -49,15 +54,18 @@ namespace HotelLibrary.Build.HotelData
                         CreateRoom.CreatingRoom();
                         break;
                     case "2":
-                        DisplayRoomMenu.ReadRooms();
+                        DisplayReadRoomMenu.ReadRooms();
                         break;
                     case "3":
-                        //Update Room
+                        DisplayRoomUpdateMenu.RoomEditor();
                         break;
                     case "4":
                         SoftDeleteRooms.SoftDeleteRoom();
                         break;
                     case "5":
+                        //Reactivate room
+                        break;
+                    case "6":
                         RoomDelete.DeleteRoom();
                         break;
 

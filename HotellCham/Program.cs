@@ -1,5 +1,5 @@
 ﻿using HotelLibrary;
-using HotelLibrary.Build.HotelData;
+using HotelLibrary.Build.Service;
 
 namespace HotellCham
 {

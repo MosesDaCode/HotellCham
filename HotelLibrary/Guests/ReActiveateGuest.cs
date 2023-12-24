@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using HotelLibrary.Build.HotelData;
+using HotelLibrary.Build.Service;
 using HotelLibrary.Guests.ReadGuests;
 
 namespace HotelLibrary.Guests
@@ -22,13 +22,13 @@ namespace HotelLibrary.Guests
             using (var dbGetBackGuest = new HotelChamDbContext())
             {
 
-                Console.Write("Ange id för gästen du vill Återaktivera: ");
+                Console.Write("\nAnge id för gästen du vill Återaktivera: ");
                 int guestIdToReactivate;
                 do
                 {
                     if (!int.TryParse(Console.ReadLine(), out guestIdToReactivate))
                     {
-                        Console.WriteLine("ID existerar inte!");
+                        Console.WriteLine("\nID existerar inte!");
                     }
                     else if (guestIdToReactivate == 0)
                     {
@@ -44,10 +44,11 @@ namespace HotelLibrary.Guests
                 var guestToGetBack = dbGetBackGuest.Guests.Find(guestIdToReactivate);
                 guestToGetBack.IsGuestActive = true;
                 dbGetBackGuest.SaveChanges();
-                Console.WriteLine("Gästen är nu aktiverad igen!");
+                Console.WriteLine($"\n{guestToGetBack.LastName}, {guestToGetBack.FirstName} är nu aktiverad igen!");
             }
-            Console.WriteLine("Tryck på enter för att fortsätta...");
+            Console.WriteLine("\nTryck på enter för att fortsätta...");
             Console.ReadKey();
+            Console.Clear();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using HotelLibrary.Build.HotelData;
+﻿using HotelLibrary.Build.Service;
 using HotelLibrary.Rooms.ReadingRooms;
 using System;
 using System.Collections.Generic;

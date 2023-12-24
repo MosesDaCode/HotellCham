@@ -1,6 +1,7 @@
 ﻿using HotelLibrary;
 using HotelLibrary.Build;
-using HotelLibrary.Build.HotelData;
+using HotelLibrary.Build.Service;
+using HotelLibrary.Build.Service;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;

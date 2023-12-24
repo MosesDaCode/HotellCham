@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using HotelLibrary.Build.Service;
+using Microsoft.EntityFrameworkCore;
 
-namespace HotelLibrary.Build.HotelData
+namespace HotelLibrary.Build.Service
 {
 
     public class HotelChamDbContext : DbContext

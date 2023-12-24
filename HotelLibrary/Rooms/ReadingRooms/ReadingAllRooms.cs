@@ -1,4 +1,4 @@
-﻿using HotelLibrary.Build.HotelData;
+﻿using HotelLibrary.Build.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,6 @@ namespace HotelLibrary.Rooms.ReadingRooms
     {
         public static void ReadAllRooms()
         {
-            Console.Clear();
             Console.WriteLine("------------------");
             Console.WriteLine("| Se alla rum    |");
             Console.WriteLine("| 0. gå tillbaka |");
@@ -24,7 +23,7 @@ namespace HotelLibrary.Rooms.ReadingRooms
                 if (activeRooms.Any())
                 {
                     Console.WriteLine("Lista av alla rum");
-                    Console.WriteLine("----------------------------------------");
+                    Console.WriteLine("---------------------------------------------------------------------------");
                     foreach (var room in activeRooms)
                     {
                         Console.WriteLine($"RumsID: {room.RoomId}");
@@ -33,7 +32,7 @@ namespace HotelLibrary.Rooms.ReadingRooms
                         Console.WriteLine($"Pris per natt: {room.PricePerNight}");
                         Console.WriteLine($"Rums typ: {room.RoomType}");
                         Console.WriteLine($"Rums beskrivning: {room.Description}");
-                        Console.WriteLine("----------------------------------------");
+                        Console.WriteLine("---------------------------------------------------------------------------");
 
                     }
                 }
@@ -42,8 +41,6 @@ namespace HotelLibrary.Rooms.ReadingRooms
                     Console.WriteLine("Inga rum är tíllgängliga.");
                     Console.WriteLine("Tryck på enter för att gå tillbaka...");
                 }
-                Console.ReadKey();
-                Console.Clear();
             }
         }
     }

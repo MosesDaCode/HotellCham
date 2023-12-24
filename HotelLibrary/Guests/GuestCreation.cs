@@ -1,4 +1,4 @@
-﻿using HotelLibrary.Build.HotelData;
+﻿using HotelLibrary.Build.Service;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
@@ -39,7 +39,7 @@ public class GuestCreation
                             var guestAdress = Console.ReadLine();
                             if (guestAdress != "0" && !string.IsNullOrEmpty(guestAdress))
                             {
-                                Console.Write("Ange ett land för gästen: ");
+                                Console.Write("\nAnge ett land för gästen: ");
                                 var guestCountry = Console.ReadLine();
                                 if (guestCountry != "0" && !string.IsNullOrEmpty(guestCountry))
                                 {
@@ -60,7 +60,7 @@ public class GuestCreation
                                         };
                                         dbGuest.Guests.Add(newGuest);
                                         dbGuest.SaveChanges();
-                                        Console.WriteLine("Gästen har sparats i systemet!");
+                                        Console.WriteLine($"\n{newGuest.LastName}, {newGuest.FirstName} har sparats i systemet!");
                                     }
                                     else if (guestCity == "0")
                                     {
@@ -69,7 +69,7 @@ public class GuestCreation
                                     }
                                     else
                                     {
-                                        Console.WriteLine("Du måste ange en hemstad till gästen!");
+                                        Console.WriteLine("\nDu måste ange en hemstad till gästen!");
                                     }
                                 }
                                 else if (guestCountry == "0")
@@ -79,7 +79,7 @@ public class GuestCreation
                                 }
                                 else
                                 {
-                                    Console.WriteLine("Du måste ange ett hemland till gästen");
+                                    Console.WriteLine("\nDu måste ange ett hemland till gästen");
                                 }
                             }
                             else if (string.IsNullOrEmpty(guestAdress))
@@ -94,8 +94,8 @@ public class GuestCreation
                                 };
                                 dbGuest.Guests.Add(newGuest);
                                 dbGuest.SaveChanges();
-                                Console.WriteLine("Utan Adress, Land, Stad.");
-                                Console.WriteLine("Gästen har sparats i systemet!");
+                                Console.WriteLine("\nUtan Adress, Land, Stad.");
+                                Console.Write($"{newGuest.LastName}, {newGuest.FirstName} har sparats i systemet!");
                             }
 
                             else if (guestAdress == "0")
@@ -105,8 +105,7 @@ public class GuestCreation
                             }
                             else
                             {
-                                Console.WriteLine("Error!!");
-                                Console.WriteLine("Tryck på enter för att gå tillbaka...");
+                                Console.WriteLine("\nError!!");
                             }
                         }
                         else if (guestNum == "0")
@@ -116,8 +115,7 @@ public class GuestCreation
                         }
                         else
                         {
-                            Console.WriteLine("Error!!!");
-                            Console.WriteLine("Tryck på enter för att gå tillbaka...");
+                            Console.WriteLine("\nError!!!");
                         }
                     }
                     else if (guestEmail == "0")
@@ -127,8 +125,7 @@ public class GuestCreation
                     }
                     else
                     {
-                        Console.WriteLine("Error!!");
-                        Console.WriteLine("Tryck på enter för att gå tillbaka...");
+                        Console.WriteLine("\nError!!");
                     }
 
                 }
@@ -139,8 +136,7 @@ public class GuestCreation
                 }
                 else
                 {
-                    Console.WriteLine("Error...");
-                    Console.WriteLine("Tryck på enter för att gå tillbaka...");
+                    Console.WriteLine("\nError...");
                 }
             }
             else if (firstName == "0")
@@ -150,10 +146,9 @@ public class GuestCreation
             }
             else
             {
-                Console.WriteLine("Error!!!");
-                Console.WriteLine("Tryck på enter för att gå tillbaka...");
+                Console.WriteLine("\nError!!!");
             }
-            Console.WriteLine("Tryck på enter för att fortsätta...");
+            Console.WriteLine("\nTryck på enter för att gå tillbaka...");
             Console.ReadLine();
             Console.Clear();
         }
