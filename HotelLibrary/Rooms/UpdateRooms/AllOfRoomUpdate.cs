@@ -80,7 +80,6 @@ namespace HotelLibrary.Rooms.UpdateRooms
                                         {
                                             dbRoomUpdate.SaveChanges();
                                             Console.WriteLine($"\nRum: {roomToUpdate.RoomNumber}, har uppdaterats!");
-                                            Console.WriteLine("Tryck på enter för att gå tillbaka.");
 
                                         }
                                     }
@@ -92,7 +91,6 @@ namespace HotelLibrary.Rooms.UpdateRooms
                                     else
                                     {
                                         Console.WriteLine("\nDu har angett i fel format!");
-                                        Console.WriteLine("Tryck på enter och försök igen...");
                                     }
 
                                 }
@@ -105,7 +103,6 @@ namespace HotelLibrary.Rooms.UpdateRooms
                             else
                             {
                                 Console.WriteLine("\nDu har angett ett giltigt pris!");
-                                Console.WriteLine("Tryck på enter och försök igen...");
                             }
                         }
                         else if (roomToUpdate.Capacity == 0)
@@ -116,7 +113,6 @@ namespace HotelLibrary.Rooms.UpdateRooms
                         else
                         {
                             Console.WriteLine("\nDu måste ange antalet i siffror mella 1-4!");
-                            Console.WriteLine("Tryck på enter för att gå tillbaka...");
                         }
                     }
                     else if (roomId == 0)
@@ -127,7 +123,6 @@ namespace HotelLibrary.Rooms.UpdateRooms
                     else
                     {
                         Console.WriteLine("\nID du söker existerar inte!");
-                        Console.WriteLine("Tryck på enter för att gå tillbaka...");
                     }
 
                 }
@@ -137,8 +132,7 @@ namespace HotelLibrary.Rooms.UpdateRooms
                     return;
                 }
 
-                Console.ReadKey();
-                Console.Clear();
+                
 
             }
 

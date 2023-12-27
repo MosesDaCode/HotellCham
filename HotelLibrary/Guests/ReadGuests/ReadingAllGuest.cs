@@ -28,12 +28,12 @@ namespace HotelLibrary.Guests.ReadGuests
                         Console.WriteLine($"GästID: {guest.GuestId}");
                         Console.WriteLine($"Namn: {guest.LastName}, {guest.FirstName}");
                         Console.WriteLine($"Email: {guest.Email}");
-                        Console.WriteLine($"Phone: {guest.Phone}");
+                        Console.WriteLine($"Telefon: {guest.Phone}");
                         if (!string.IsNullOrEmpty(guest.Adress))
                         {
                             Console.WriteLine($"Adress: {guest.Adress}");
-                            Console.WriteLine($"City: {guest.City}");
-                            Console.WriteLine($"Country: {guest.Country}");
+                            Console.WriteLine($"Stad: {guest.City}");
+                            Console.WriteLine($"Land: {guest.Country}");
                         }
                         Console.WriteLine("------------------------------");
                     }

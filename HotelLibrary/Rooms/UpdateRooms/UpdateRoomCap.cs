@@ -34,7 +34,7 @@ namespace HotelLibrary.Rooms.UpdateRooms
                         {
                             Console.WriteLine($"Rums nummer: {roomCapToUpdate.RoomNumber}");
                             Console.WriteLine($"Antal gäster: {roomCapToUpdate.Capacity}");
-                           
+
                             Console.WriteLine("-----------------------------");
 
                         }
@@ -44,10 +44,8 @@ namespace HotelLibrary.Rooms.UpdateRooms
                         roomCapToUpdate.Capacity = Convert.ToInt32(Console.ReadLine());
                         if (roomCapToUpdate.Capacity != 0 && roomCapToUpdate.Capacity >= 1 && roomCapToUpdate.Capacity < 5)
                         {
-                           dbRoomCapUpdate.SaveChanges();
+                            dbRoomCapUpdate.SaveChanges();
                             Console.WriteLine($"\nRum: {roomCapToUpdate.RoomNumber}, kan nu ha {roomCapToUpdate.Capacity} gäster!");
-                            Console.WriteLine("Tryck på enter för att fortsätta...");
-
                         }
                         else if (roomCapToUpdate.Capacity == 0)
                         {
@@ -57,10 +55,17 @@ namespace HotelLibrary.Rooms.UpdateRooms
                         else
                         {
                             Console.WriteLine("\nDu måste ange ett antal emellan (1-4 gäster)");
-                            Console.WriteLine("Tryck på enter för att gå tillbaka...");
                         }
-                        Console.ReadKey();
                     }
+                    else
+                    {
+                        Console.WriteLine("ID existerar inte!");
+                    }
+                }
+                else if (roomId == 0)
+                {
+                    Console.Clear();
+                    return;
                 }
             }
         }

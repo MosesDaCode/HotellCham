@@ -11,13 +11,9 @@ namespace HotelLibrary.Rooms.ReadingRooms
     {
         public static void ReadAllRooms()
         {
-            Console.WriteLine("------------------");
-            Console.WriteLine("| Se alla rum    |");
-            Console.WriteLine("| 0. gå tillbaka |");
-            Console.WriteLine("-----------------\n\n");
-
             using (var dbRoom = new HotelChamDbContext())
             {
+
                 var activeRooms = dbRoom.Rooms
                     .ToList();
                 if (activeRooms.Any())
@@ -28,18 +24,16 @@ namespace HotelLibrary.Rooms.ReadingRooms
                     {
                         Console.WriteLine($"RumsID: {room.RoomId}");
                         Console.WriteLine($"Rumsnummer: {room.RoomNumber}");
-                        Console.WriteLine($"Rums kapacitet: {room.Capacity}");
+                        Console.WriteLine($"Antal gäster: {room.Capacity}");
                         Console.WriteLine($"Pris per natt: {room.PricePerNight}");
                         Console.WriteLine($"Rums typ: {room.RoomType}");
                         Console.WriteLine($"Rums beskrivning: {room.Description}");
                         Console.WriteLine("---------------------------------------------------------------------------");
-
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Inga rum är tíllgängliga.");
-                    Console.WriteLine("Tryck på enter för att gå tillbaka...");
+                    Console.WriteLine("\nInga rum är tíllgängliga.");
                 }
             }
         }

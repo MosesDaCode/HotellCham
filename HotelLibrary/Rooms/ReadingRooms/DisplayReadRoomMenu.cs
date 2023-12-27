@@ -18,15 +18,27 @@ namespace HotelLibrary.Rooms.ReadingRooms
                 {
                     case "1":
                         ReadingAllRooms.ReadAllRooms();
+                        Console.WriteLine("Tryck på enter för att gå tillbaka...");
+                        Console.ReadKey();
+                        Console.Clear();
                         break;
                     case "2":
                         ReadingAvailableRoom.ReadAvailableRooms();
+                        Console.WriteLine("Tryck på enter för att gå tillbaka...");
+                        Console.ReadKey();
+                        Console.Clear();
                         break;
                     case "3":
                         ReadOccupiedRoom.ReadOccupiedRooms();
+                        Console.WriteLine("Tryck på enter för att gå tillbaka...");
+                        Console.ReadKey();
+                        Console.Clear();
                         break;
                     case "4":
                         ReadNonActiveRoom.ReadNonActiveRooms();
+                        Console.WriteLine("Tryck på enter för att gå tillbaka...");
+                        Console.ReadKey();
+                        Console.Clear();
                         break;
                     case "0":
                         Console.Clear();

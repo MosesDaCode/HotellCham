@@ -11,12 +11,6 @@ namespace HotelLibrary.Rooms.ReadingRooms
     {
         public static void ReadNonActiveRooms()
         {
-            Console.Clear();
-            Console.WriteLine("-------------------------");
-            Console.WriteLine("| Se icke aktiva rum    |");
-            Console.WriteLine("| 0. gå tillbaka        |");
-            Console.WriteLine("------------------------\n\n");
-
             using (var dbRoom = new HotelChamDbContext())
             {
                 var nonActiveRooms = dbRoom.Rooms
@@ -41,11 +35,8 @@ namespace HotelLibrary.Rooms.ReadingRooms
                 }
                 else
                 {
-                    Console.WriteLine("Alla rum verkar vara aktiva.");
-                    Console.WriteLine("Tryck på enter för att gå tillbaka...");
+                    Console.WriteLine("\nAlla rum verkar vara aktiva.");
                 }
-                Console.ReadKey();
-                Console.Clear();
             }
         }
     }

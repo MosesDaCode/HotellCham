@@ -63,7 +63,7 @@ namespace HotelLibrary.Build.Service
                         SoftDeleteRooms.SoftDeleteRoom();
                         break;
                     case "5":
-                        //Reactivate room
+                        ReActivateRoom.GetBackRoom();
                         break;
                     case "6":
                         RoomDelete.DeleteRoom();

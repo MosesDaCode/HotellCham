@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using HotelLibrary.Guests;
 using HotelLibrary.Guests.DeleteGuests;
 using HotelLibrary.Guests.ReadGuests;
+using HotelLibrary.Guests.UpdateGuests;
 
 namespace HotelLibrary.Build.Service
 {
@@ -75,7 +76,6 @@ namespace HotelLibrary.Build.Service
                         ReActiveateGuest.GetGuestBack();
                         break;
                     case "7":
-                        Console.Clear();
                         GuestDelete.DeleteGuest();
                         break;
                     case "0":

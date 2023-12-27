@@ -18,19 +18,39 @@ namespace HotelLibrary.Rooms.UpdateRooms
                 {
                     case "1":
                         AllOfRoomUpdate.UpdateWholeRoom();
+                        Console.WriteLine("Tryck på enter och försök igen...");
+                        Console.ReadKey();
+                        Console.Clear();
                         break;
                     case "2":
                         UpdateRoomCap.UpdatingRoomCapacity();
+                        Console.WriteLine("Tryck på enter och försök igen...");
+                        Console.ReadKey();
+                        Console.Clear();
                         break;
                     case "3":
+                        UpdateRoomPrice.RoomPriceUpdating();
+                        Console.WriteLine("Tryck på enter och försök igen...");
+                        Console.ReadKey();
+                        Console.Clear();
                         break;
                     case "4":
+                        UpdateRoomType.RoomTypeUpdating();
+                        Console.WriteLine("Tryck på enter och försök igen...");
+                        Console.ReadKey();
+                        Console.Clear();
                         break;
                     case "5":
+                        UpdateRoomSize.RoomSizeUpdating();
+                        Console.WriteLine("Tryck på enter och försök igen...");
+                        Console.ReadKey();
+                        Console.Clear();
                         break;
                     case "6":
-                        break;
-                    case "7":
+                        UpdateRoomDesc.RoomDescriptionUpdate();
+                        Console.WriteLine("Tryck på enter och försök igen...");
+                        Console.ReadKey();
+                        Console.Clear();
                         break;
                     case "0":
                         Console.Clear();

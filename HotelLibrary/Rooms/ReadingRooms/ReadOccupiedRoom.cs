@@ -11,12 +11,6 @@ namespace HotelLibrary.Rooms.ReadingRooms
     {
         public static void ReadOccupiedRooms()
         {
-            Console.Clear();
-            Console.WriteLine("-------------------------");
-            Console.WriteLine("| Se  upptagna rum      |");
-            Console.WriteLine("| 0. gå tillbaka        |");
-            Console.WriteLine("------------------------\n\n");
-
             using (var dbRoom = new HotelChamDbContext())
             {
                 var occupiedRooms = dbRoom.Rooms
@@ -36,16 +30,12 @@ namespace HotelLibrary.Rooms.ReadingRooms
                         Console.WriteLine($"Rums typ: {room.RoomType}");
                         Console.WriteLine($"Rums beskrivning: {room.Description}");
                         Console.WriteLine("---------------------------------------------------------------------------");
-
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Alla rum verkar Lediga.");
-                    Console.WriteLine("Tryck på enter för att gå tillbaka...");
+                    Console.WriteLine("\nAlla rum verkar Lediga.");
                 }
-                Console.ReadKey();
-                Console.Clear();
             }
         }
     }
