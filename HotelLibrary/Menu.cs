@@ -75,7 +75,7 @@ namespace HotelLibrary
             Console.WriteLine("-----------------\n\n");
 
             Console.WriteLine("------------------------------");
-            Console.WriteLine("| 1. Skapa en bokning        |");
+            Console.WriteLine("| 1. Boka ett rum            |");
             Console.WriteLine("| 2. Se bokningar            |");
             Console.WriteLine("| 3. Uppdatera bokning       |");
             Console.WriteLine("| 4. Radera bokning          |");
@@ -154,6 +154,22 @@ namespace HotelLibrary
             Console.Write("Val: ");
             string roomUpdateMenuChoice = Console.ReadLine();
             return roomUpdateMenuChoice;
+        }
+        public static string ReadingBookingsMenu()
+        {
+            Console.WriteLine("------------------------------");
+            Console.WriteLine("| Välj vilka rum du vill se  |");
+            Console.WriteLine("------------------------------\n\n");
+
+            Console.WriteLine("------------------------------");
+            Console.WriteLine("| 1. Se alla bokningar       |");
+            Console.WriteLine("| 2. Se betalda bokningar    |");
+            Console.WriteLine("| 3. Se obetalda bokningar   |");
+            Console.WriteLine("| 0. Gå tillbaka             |");
+            Console.WriteLine("------------------------------");
+            Console.Write("Val: ");
+            string bookingMenuChoice = Console.ReadLine();
+            return bookingMenuChoice;
         }
     }
 }

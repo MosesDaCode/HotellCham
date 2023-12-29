@@ -129,7 +129,8 @@ namespace HotelLibrary.Rooms
                             RoomType = roomTypeChoice,
                             Description = descriptRoom,
                             IsRoomActive = true,
-                            IsOccupied = true
+                            IsOccupied = false,
+                            
                         };
                         dbRoom.Add(newRoom);
                         dbRoom.SaveChanges();

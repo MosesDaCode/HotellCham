@@ -25,7 +25,7 @@ namespace HotelLibrary.Rooms.ReadingRooms
                     {
                         Console.WriteLine($"RumsID: {room.RoomId}");
                         Console.WriteLine($"Rumsnummer: {room.RoomNumber}");
-                        Console.WriteLine($"Rums kapacitet: {room.Capacity}");
+                        Console.WriteLine($"Antal gäster: {room.Capacity}");
                         Console.WriteLine($"Pris per natt: {room.PricePerNight}");
                         Console.WriteLine($"Rums typ: {room.RoomType}");
                         Console.WriteLine($"Rums beskrivning: {room.Description}");

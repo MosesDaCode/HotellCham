@@ -4,6 +4,7 @@ using HotelLibrary.Build.Service;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HotelLibrary.Migrations
 {
     [DbContext(typeof(HotelChamDbContext))]
-    partial class HotelChamDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231227170233_added more proterties to booking entity")]
+    partial class addedmoreprotertiestobookingentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,9 +46,6 @@ namespace HotelLibrary.Migrations
                         .HasColumnType("int");
 
                     b.Property<bool>("IsBookingActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsCheckedIn")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsPaid")

@@ -86,7 +86,8 @@ namespace HotelLibrary.Build.Service
                     PricePerNight = 780,
                     RoomType = "Singelrum",
                     Description = "Ett Trevligt singelrum med utsikt över Mälarsjön",
-                    IsRoomActive = true
+                    IsRoomActive = true,
+                    RoomSize = 13
                 });
             }
             if (!dbContext.Rooms.Any(g => g.RoomNumber == 102))
@@ -99,7 +100,8 @@ namespace HotelLibrary.Build.Service
                     PricePerNight = 780,
                     RoomType = "Singelrum",
                     Description = "Ett Trevligt singelrum med utsikt över Mälarsjön",
-                    IsRoomActive = true
+                    IsRoomActive = true,
+                    RoomSize = 15
                 });
             }
             if (!dbContext.Rooms.Any(g => g.RoomNumber == 103))
@@ -107,12 +109,13 @@ namespace HotelLibrary.Build.Service
                 dbContext.Rooms.Add(new Room
                 {
                     RoomNumber = 103,
-                    Capacity = 1,
+                    Capacity = 3,
                     IsOccupied = false,
                     PricePerNight = 1090,
                     RoomType = "Dubbelrum",
                     Description = "Ett Trevligt dubbelrum med utsikt över Mälarsjön, inkluderar en dubbelsäng med en större dusch.",
-                    IsRoomActive = true
+                    IsRoomActive = true,
+                    RoomSize = 24
                 });
             }
             if (!dbContext.Rooms.Any(g => g.RoomNumber == 104))
@@ -120,12 +123,13 @@ namespace HotelLibrary.Build.Service
                 dbContext.Rooms.Add(new Room
                 {
                     RoomNumber = 104,
-                    Capacity = 1,
+                    Capacity = 4,
                     IsOccupied = false,
                     PricePerNight = 1090,
                     RoomType = "Dubbelrum",
                     Description = "Ett Trevligt dubbelrum med utsikt över Mälarsjön, inkluderar en dubbelsäng med en större dusch.",
-                    IsRoomActive = true
+                    IsRoomActive = true, 
+                    RoomSize= 27
                 });
             }
         }

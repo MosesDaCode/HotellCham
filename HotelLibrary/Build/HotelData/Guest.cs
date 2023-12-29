@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using HotelLibrary.Guests;
 using HotelLibrary.Guests.DeleteGuests;
 using HotelLibrary.Guests.ReadGuests;
-using HotelLibrary.Guests.UpdateGuests;
 
 namespace HotelLibrary.Build.Service
 {
@@ -64,18 +63,15 @@ namespace HotelLibrary.Build.Service
                         DisplayReadGuestMenu.ReadGuests();
                         break;
                     case "3":
-                        ReadingNonActiveGuest.ReadNonActiveGuests();
-                        break;
-                    case "4":
                         GuestUpdate.UpdateGuest();
                         break;
-                    case "5":
+                    case "4":
                         SoftDeleteGuests.SoftDeleteGuest();
                         break;
-                    case "6":
+                    case "5":
                         ReActiveateGuest.GetGuestBack();
                         break;
-                    case "7":
+                    case "6":
                         GuestDelete.DeleteGuest();
                         break;
                     case "0":

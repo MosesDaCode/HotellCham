@@ -15,9 +15,9 @@ namespace HotellCham
 
 
 
-// lägg till country och city på en guest.
-//lägg till foreign keys
-//Gör ett ERD
+//--lägg till country och city på en guest. [V]
+//--lägg till foreign keys[V]
+//--Gör ett ERD[V]
 //Skapa ett admin alternativ med password.
-//lägg in PUT (ge användaren alternativ på vad som ska uppdateras) (inkludera avaktivera)
-//Fixa så att den skippar counrty och city om man skippar hem adress
+//--lägg in PUT (ge användaren alternativ på vad som ska uppdateras) (inkludera avaktivera) [V]
+//--Fixa så att den skippar counrty och city om man skippar hem adress[V]

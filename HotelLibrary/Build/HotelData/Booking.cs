@@ -1,8 +1,12 @@
-﻿using System;
+﻿using HotelLibrary.Bookings;
+using HotelLibrary.Bookings.ReadingBookings;
+using Microsoft.EntityFrameworkCore.Storage;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,6 +16,12 @@ namespace HotelLibrary.Build.Service
     {
         [Key]
         public int BookingID { get; set; }
+
+        [Required]
+        public int RoomId { get; set; }
+
+        [Required]
+        public int GuestId { get; set; }
 
         [Required]
         public DateTime CheckInDate { get; set; }
@@ -29,6 +39,7 @@ namespace HotelLibrary.Build.Service
         public bool IsPaid { get; set; }
 
         public bool IsBookingActive { get; set; }
+        public bool IsCheckedIn { get; set; }
 
         public Room Room { get; set; }
 
@@ -37,15 +48,28 @@ namespace HotelLibrary.Build.Service
             bool isBooking = true;
             while (isBooking)
             {
+                Console.Clear();
                 switch (Menu.WriteBookingMenu())
                 {
                     case "1":
+                        BoookingCreation.CreateBooking();
+                        Console.WriteLine("\nTryck på enter för att gå tillbaka...");
+                        Console.ReadKey();
                         break;
                     case "2":
+                        DisplayReadingBookings.ReadBookings();
+                        Console.WriteLine("\nTryck på enter för att gå tillbaka...");
+                        Console.ReadKey();
                         break;
                     case "3":
+                        //Edit booking
+                        Console.WriteLine("\nTryck på enter för att gå tillbaka...");
+                        Console.ReadKey();
                         break;
                     case "4":
+                        //delete booking
+                        Console.WriteLine("\nTryck på enter för att gå tillbaka...");
+                        Console.ReadKey();
                         break;
                     case "0":
                         Console.Clear();
