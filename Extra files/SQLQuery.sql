@@ -1,0 +1,2 @@
+﻿SELECT FirstName
+From Guests
