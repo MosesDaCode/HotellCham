@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HotelLibrary
 {
-    public class Menu
+    public class DisplayMenu
     {
         public static string MainMenu()
         {
@@ -78,7 +78,7 @@ namespace HotelLibrary
             Console.WriteLine("| 1. Boka ett rum            |");
             Console.WriteLine("| 2. Se bokningar            |");
             Console.WriteLine("| 3. Uppdatera bokning       |");
-            Console.WriteLine("| 4. Radera bokning          |");
+            Console.WriteLine("| 4. Avboka                  |");
             Console.WriteLine("| 0. Gå tillbaka             |");
             Console.WriteLine("------------------------------");
             Console.Write("Val: ");
@@ -170,6 +170,24 @@ namespace HotelLibrary
             Console.Write("Val: ");
             string bookingMenuChoice = Console.ReadLine();
             return bookingMenuChoice;
+        }
+        public static string BookingUpdateMenu()
+        {
+            Console.WriteLine("------------------------------");
+            Console.WriteLine("| Välj egenskaper att ändra  |");
+            Console.WriteLine("------------------------------\n\n");
+
+            Console.WriteLine("----------------------------------------");
+            Console.WriteLine("| 1. Ändra på hela bokningen           |");
+            Console.WriteLine("| 2. Ändra på check in datum           |");
+            Console.WriteLine("| 3. Ändra på check ut datum           |");
+            Console.WriteLine("| 4. Ändra rum för bokning             |");
+            Console.WriteLine("| 5. Ändra antal gäster för bokningen  |");
+            Console.WriteLine("| 0. Gå tillbaka                       |");
+            Console.WriteLine("----------------------------------------");
+            Console.Write("Val: ");
+            string bookingUpdateMenuChoice = Console.ReadLine();
+            return bookingUpdateMenuChoice;
         }
     }
 }

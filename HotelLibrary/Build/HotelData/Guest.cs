@@ -49,44 +49,7 @@ namespace HotelLibrary.Build.Service
 
         public List<Invoice> InvoiceId { get; set; }
 
-        public static void GuestMenu()
-        {
-            bool isGuest = true;
-            while (isGuest)
-            {
-                switch (Menu.WriteGuestMenu())
-                {
-                    case "1":
-                        GuestCreation.CreateGuest();
-                        break;
-                    case "2":
-                        DisplayReadGuestMenu.ReadGuests();
-                        break;
-                    case "3":
-                        GuestUpdate.UpdateGuest();
-                        break;
-                    case "4":
-                        SoftDeleteGuests.SoftDeleteGuest();
-                        break;
-                    case "5":
-                        ReActiveateGuest.GetGuestBack();
-                        break;
-                    case "6":
-                        GuestDelete.DeleteGuest();
-                        break;
-                    case "0":
-                        Console.Clear();
-                        isGuest = false;
-                        break;
-                    default:
-                        Console.WriteLine("Fel val av meny tryck på enter och testa igen.");
-                        Console.ReadKey();
-                        Console.Clear();
-                        break;
-
-                }
-            }
-        }
+        
 
     }
 }

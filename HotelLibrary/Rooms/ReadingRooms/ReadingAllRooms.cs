@@ -9,7 +9,7 @@ namespace HotelLibrary.Rooms.ReadingRooms
 {
     public class ReadingAllRooms
     {
-        public static void ReadAllRooms()
+        public static void ReadAllRoomFeatures()
         {
             using (var dbRoom = new HotelChamDbContext())
             {

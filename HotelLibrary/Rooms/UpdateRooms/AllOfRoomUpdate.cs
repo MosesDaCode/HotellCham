@@ -17,7 +17,7 @@ namespace HotelLibrary.Rooms.UpdateRooms
         {
             using (var dbRoomUpdate = new HotelChamDbContext())
             {
-                ReadingAllRooms.ReadAllRooms();
+                ReadingAllRooms.ReadAllRoomFeatures();
                 Console.WriteLine("\nDu ska nu ändra på:");
                 Console.WriteLine("Antalet gäster som kan sova i rummet");
                 Console.WriteLine("Priset per natt");

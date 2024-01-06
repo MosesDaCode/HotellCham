@@ -1,60 +1,56 @@
-﻿using System;
+﻿using HotelLibrary.Rooms.UpdateRooms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HotelLibrary.Rooms.UpdateRooms
+namespace HotelLibrary.Bookings.UpdateBookings
 {
-    public class DisplayRoomUpdateMenu
+    public class DisplayBookingUpdateMenu
     {
-        public static void RoomEditor()
+        public static void BookingEditor()
         {
-            bool isUpdatingRoom = true;
-            while (isUpdatingRoom)
+            bool isUpdatingBooking = true;
+            while (isUpdatingBooking)
             {
                 Console.Clear();
-                switch (DisplayMenu.RoomUpdateMenu())
+                switch (DisplayMenu.BookingUpdateMenu())
                 {
                     case "1":
-                        AllOfRoomUpdate.UpdateWholeRoom();
+                        UpdateWholeBooking.UpdateAllBookingFeatures();
                         Console.WriteLine("Tryck på enter och försök igen...");
                         Console.ReadKey();
                         Console.Clear();
                         break;
                     case "2":
-                        UpdateRoomCap.UpdatingRoomCapacity();
+                        //Edit checkin date
                         Console.WriteLine("Tryck på enter och försök igen...");
                         Console.ReadKey();
                         Console.Clear();
                         break;
                     case "3":
-                        UpdateRoomPrice.RoomPriceUpdating();
+                        //edit Checkout date
                         Console.WriteLine("Tryck på enter och försök igen...");
                         Console.ReadKey();
                         Console.Clear();
                         break;
                     case "4":
+                        //edit room for booking
                         UpdateRoomType.RoomTypeUpdating();
                         Console.WriteLine("Tryck på enter och försök igen...");
                         Console.ReadKey();
                         Console.Clear();
                         break;
                     case "5":
-                        UpdateRoomSize.RoomSizeUpdating();
-                        Console.WriteLine("Tryck på enter och försök igen...");
-                        Console.ReadKey();
-                        Console.Clear();
-                        break;
-                    case "6":
-                        UpdateRoomDesc.RoomDescriptionUpdate();
+                        //edit guest capacity
                         Console.WriteLine("Tryck på enter och försök igen...");
                         Console.ReadKey();
                         Console.Clear();
                         break;
                     case "0":
                         Console.Clear();
-                        isUpdatingRoom = false;
+                        isUpdatingBooking = false;
                         break;
                     default:
                         Console.WriteLine("Du har angett fel val!");

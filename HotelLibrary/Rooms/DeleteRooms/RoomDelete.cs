@@ -18,7 +18,7 @@ namespace HotelLibrary.Rooms.DeleteRooms
             Console.WriteLine("| 0. gå tillbaka             |");
             Console.WriteLine("-----------------------------\n\n");
 
-            ReadingAllRooms.ReadAllRooms();
+            ReadingAllRooms.ReadAllRoomFeatures();
 
             using (var dbRoomDelete = new HotelChamDbContext())
             {

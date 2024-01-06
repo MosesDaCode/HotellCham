@@ -15,7 +15,7 @@ namespace HotelLibrary.Guests.ReadGuests
             while (isReadingGuests)
             {
                 Console.Clear();
-                switch (Menu.ReadingGuestsMenu())
+                switch (DisplayMenu.ReadingGuestsMenu())
                 {
                     case "1":
                         ReadingAllGuest.ReadAllGuests();

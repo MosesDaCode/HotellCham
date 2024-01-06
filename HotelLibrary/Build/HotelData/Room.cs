@@ -43,47 +43,10 @@ namespace HotelLibrary.Build.Service
 
         public bool IsRoomActive { get; set; }
 
-        public static void RoomMenu()
-        {
-            bool isRoom = true;
-            while (isRoom)
-            {
-                switch (Menu.WriteRoomMenu())
-                {
-                    case "1":
-                        CreateRoom.CreatingRoom();
-                        break;
-                    case "2":
-                        DisplayReadRoomMenu.ReadRooms();
-                        break;
-                    case "3":
-                        DisplayRoomUpdateMenu.RoomEditor();
-                        break;
-                    case "4":
-                        SoftDeleteRooms.SoftDeleteRoom();
-                        break;
-                    case "5":
-                        ReActivateRoom.GetBackRoom();
-                        break;
-                    case "6":
-                        RoomDelete.DeleteRoom();
-                        break;
-
-                    case "0":
-                        Console.Clear();
-                        isRoom = false;
-                        break;
-                    default:
-                        Console.WriteLine("Fel val av meny tryck på enter och testa igen.");
-                        Console.ReadKey();
-                        Console.Clear();
-                        break;
-                }
-            }
-        }
+        
     }
 }
 
 
 
-//lägg till foreign keys
+//--lägg till foreign keys[V]

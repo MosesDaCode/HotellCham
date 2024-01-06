@@ -14,10 +14,10 @@ namespace HotelLibrary.Rooms.ReadingRooms
             while (isReadingRooms)
             {
                 Console.Clear();
-                switch (Menu.ReadingRoomsMenu())
+                switch (DisplayMenu.ReadingRoomsMenu())
                 {
                     case "1":
-                        ReadingAllRooms.ReadAllRooms();
+                        ReadingAllRooms.ReadAllRoomFeatures();
                         Console.WriteLine("Tryck på enter för att gå tillbaka...");
                         Console.ReadKey();
                         Console.Clear();

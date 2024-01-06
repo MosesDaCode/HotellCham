@@ -15,7 +15,7 @@ namespace HotelLibrary.Rooms.UpdateRooms
         {
             using (var dbRoomPriceUpdate = new HotelChamDbContext())
             {
-                ReadingAllRooms.ReadAllRooms();
+                ReadingAllRooms.ReadAllRoomFeatures();
                 int roomId;
 
                 Console.Write("\nAnge RumsId ifrån ovan:");

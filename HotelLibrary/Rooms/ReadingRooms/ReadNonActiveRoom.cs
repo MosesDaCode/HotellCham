@@ -11,6 +11,7 @@ namespace HotelLibrary.Rooms.ReadingRooms
     {
         public static void ReadNonActiveRooms()
         {
+            Console.Clear();
             using (var dbRoom = new HotelChamDbContext())
             {
                 var nonActiveRooms = dbRoom.Rooms

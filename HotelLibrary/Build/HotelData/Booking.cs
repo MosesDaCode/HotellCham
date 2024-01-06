@@ -1,5 +1,6 @@
 ﻿using HotelLibrary.Bookings;
 using HotelLibrary.Bookings.ReadingBookings;
+using HotelLibrary.Bookings.UpdateBookings;
 using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
@@ -36,69 +37,24 @@ namespace HotelLibrary.Build.Service
         [Range(0,2)]
         public int? ExtraBed { get; set; }
 
+        [Required]
         public bool IsPaid { get; set; }
 
+        [Required]
         public bool IsBookingActive { get; set; }
+
+        [Required]
         public bool IsCheckedIn { get; set; }
 
+        [Required]
+        public int NumberOfGuests {  get; set; }
+
+        [Required]
         public Room Room { get; set; }
 
-        public static void BookingMenu()
-        {
-            bool isBooking = true;
-            while (isBooking)
-            {
-                Console.Clear();
-                switch (Menu.WriteBookingMenu())
-                {
-                    case "1":
-                        BoookingCreation.CreateBooking();
-                        Console.WriteLine("\nTryck på enter för att gå tillbaka...");
-                        Console.ReadKey();
-                        break;
-                    case "2":
-                        DisplayReadingBookings.ReadBookings();
-                        Console.WriteLine("\nTryck på enter för att gå tillbaka...");
-                        Console.ReadKey();
-                        break;
-                    case "3":
-                        //Edit booking
-                        Console.WriteLine("\nTryck på enter för att gå tillbaka...");
-                        Console.ReadKey();
-                        break;
-                    case "4":
-                        //delete booking
-                        Console.WriteLine("\nTryck på enter för att gå tillbaka...");
-                        Console.ReadKey();
-                        break;
-                    case "0":
-                        Console.Clear();
-                        isBooking = false;
-                        break;
-                    default:
-                        Console.WriteLine("Fel val av meny tryck på enter och testa igen.");
-                        Console.ReadKey();
-                        Console.Clear();
-                        break;
-                }
-            }
-        }
+        
     }
 }
 
 
 
-//Console.WriteLine("(Valbart, Annars tryck på enter)");
-//Console.Write("Hur många extrasängar behövs?: ");
-//int extraBeds;
-//do
-//{
-//    Console.WriteLine("(Valbart, Annars tryck på enter)");
-//    Console.Write("Hur många extrasängar behövs?: ");
-//    if (!int.TryParse(Console.ReadLine(), out extraBeds))
-//    {
-//        Console.WriteLine("\nDu måste ange ett för hur många sängar som ska läggas till.");
-//        Console.WriteLine("Tryck på enter och försök igen...");
-//        Console.ReadKey();
-//    }
-//} while (true);

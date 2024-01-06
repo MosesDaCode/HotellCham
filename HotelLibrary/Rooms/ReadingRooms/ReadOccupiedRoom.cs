@@ -11,6 +11,7 @@ namespace HotelLibrary.Rooms.ReadingRooms
     {
         public static void ReadOccupiedRooms()
         {
+            Console.Clear();
             using (var dbRoom = new HotelChamDbContext())
             {
                 var occupiedRooms = dbRoom.Rooms

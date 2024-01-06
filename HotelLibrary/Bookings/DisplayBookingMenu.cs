@@ -1,51 +1,51 @@
-﻿using HotelLibrary.Rooms.ReadingRooms;
+﻿using HotelLibrary.Bookings.ReadingBookings;
+using HotelLibrary.Bookings.UpdateBookings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HotelLibrary.Bookings.ReadingBookings
+namespace HotelLibrary.Bookings
 {
-    public class DisplayReadingBookings
+    public class DisplayBookingMenu
     {
-        public static void ReadBookings()
+        public static void BookingMenu()
         {
-            bool isReadingBookings = true;
-            while (isReadingBookings)
+            bool isBooking = true;
+            while (isBooking)
             {
                 Console.Clear();
-                switch (DisplayMenu.ReadingBookingsMenu())
+                switch (DisplayMenu.WriteBookingMenu())
                 {
                     case "1":
-                        ReadingAllBookings.ReadAllBookings();
+                        BoookingCreation.CreateBooking();
                         Console.WriteLine("\nTryck på enter för att gå tillbaka...");
                         Console.ReadKey();
                         Console.Clear();
                         break;
                     case "2":
-                        ReadingPaidBookings.ReadPaidBookings();
-                        Console.WriteLine("\nTryck på enter för att gå tillbaka...");
-                        Console.ReadKey();
-
-                        Console.Clear();
+                        DisplayReadingBookings.ReadBookings();
                         break;
                     case "3":
-                        ReadingUnPaidBookings.ReadUnPaidBookings();
+                        DisplayBookingUpdateMenu.BookingEditor();
                         Console.WriteLine("\nTryck på enter för att gå tillbaka...");
                         Console.ReadKey();
                         Console.Clear();
+                        break;
+                    case "4":
+                        BookingDelete.DeleteBooking();
+                        
                         break;
                     case "0":
                         Console.Clear();
-                        isReadingBookings = false;
+                        isBooking = false;
                         break;
                     default:
-                        Console.WriteLine("\nFel val av meny tryck på enter och testa igen.");
+                        Console.WriteLine("Fel val av meny tryck på enter och testa igen.");
                         Console.ReadKey();
                         Console.Clear();
                         break;
-
                 }
             }
         }

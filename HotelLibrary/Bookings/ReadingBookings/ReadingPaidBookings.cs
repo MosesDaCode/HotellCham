@@ -11,6 +11,7 @@ namespace HotelLibrary.Bookings.ReadingBookings
     {
         public static void ReadPaidBookings()
         {
+            Console.Clear();
             using (var dbReadPaidBookings = new HotelChamDbContext())
             {
                 var allBookings = (
@@ -45,9 +46,9 @@ namespace HotelLibrary.Bookings.ReadingBookings
                         Console.WriteLine($"Extra säng: {bookings.ExtraBed}");
                         Console.WriteLine($"Rums typ: {bookings.RoomType}");
                         Console.WriteLine($"Rums beskrivning: {bookings.Description}");
-                        Console.WriteLine($"Checkat in: {bookings.IsCheckedIn}");
                         Console.WriteLine($"Pris per natt: {bookings.PricePerNight}");
                         Console.WriteLine($"TotalPris: {bookings.TotalPrice}");
+                        Console.WriteLine($"Checkat in: {bookings.IsCheckedIn}");
                         Console.WriteLine($"Betalad: {bookings.IsPaid}");
                         Console.WriteLine("---------------------------------------------------------------------------");
                     }

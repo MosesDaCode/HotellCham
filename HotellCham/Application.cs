@@ -1,14 +1,9 @@
 ﻿using HotelLibrary;
-using HotelLibrary.Build;
+using HotelLibrary.Bookings;
 using HotelLibrary.Build.Service;
-using HotelLibrary.Build.Service;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using HotelLibrary.Guests;
+using HotelLibrary.Invoices;
+using HotelLibrary.Rooms;
 
 namespace HotellCham
 {
@@ -22,29 +17,31 @@ namespace HotellCham
             bool mainMenuIsRunning = true;
             while (mainMenuIsRunning)
             {
-                switch (Menu.MainMenu())
+                switch (DisplayMenu.MainMenu())
                 {
                     case "1":
+                        //Checkin
                         Console.Clear();
                         break;
                     case "2":
+                        //CheckOut
                         Console.Clear();
                         break;
                     case "3":
                         Console.Clear();
-                        Guest.GuestMenu();
+                        DisplayGuestMenu.GuestMenu();
                         break;
                     case "4":
                         Console.Clear();
-                        Room.RoomMenu();
+                        DisplayRoomMenu.RoomMenu();
                         break;
                     case "5":
                         Console.Clear();
-                        Booking.BookingMenu();
+                        DisplayBookingMenu.BookingMenu();
                         break;
                     case "6":
                         Console.Clear();
-                        Invoice.InvoiceMenu();
+                        DisplayInvoiceMenu.InvoiceMenu();
                         break;
                     case "0":
                         Console.Clear();

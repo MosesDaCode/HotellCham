@@ -1,5 +1,6 @@
 ﻿using HotelLibrary.Build.Service;
 using HotelLibrary.Guests.ReadGuests;
+using HotelLibrary.Rooms.ReadingRooms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace HotelLibrary.Rooms.DeleteRooms
             Console.WriteLine("| 0. gå tillbaka    |");
             Console.WriteLine("--------------------\n\n");
 
-            ReadingActiveGuest.ReadActiveGuests();
+            ReadingAvailableRoom.ReadAvailableRooms();
             using (var dbSoftDeleteRoom = new HotelChamDbContext())
             {
 
@@ -29,7 +30,8 @@ namespace HotelLibrary.Rooms.DeleteRooms
                 {
                     if (!int.TryParse(Console.ReadLine(), out roomIdToDeactivate))
                     {
-                        Console.WriteLine("ID existerar inte!");
+                        Console.WriteLine("\nOgiltigt ID!!!!");
+                        Console.Write("Ange id för gästen du vill ta bort: ");
                     }
                     else if (roomIdToDeactivate == 0)
                     {
@@ -38,16 +40,26 @@ namespace HotelLibrary.Rooms.DeleteRooms
                     }
                     else
                     {
+                        var roomToSoftDelete = dbSoftDeleteRoom.Rooms.Find(roomIdToDeactivate);
+                        if (roomToSoftDelete == null)
+                        {
+                            Console.WriteLine("\nRummet existerar inte!!");
+                        }
+                        else if (roomToSoftDelete.IsRoomActive == false)
+                        {
+                            Console.WriteLine("\nRummet är redan avaktiverat!!!");
+                        }
+                        else
+                        {
+                            roomToSoftDelete.IsRoomActive = false;
+                            dbSoftDeleteRoom.SaveChanges();
+                            Console.WriteLine($"\nRum: {roomToSoftDelete.RoomNumber} är nu avaktiverad!");
+                        }
                         break;
                     }
                 } while (true);
-
-                var roomToSoftDelete = dbSoftDeleteRoom.Rooms.Find(roomIdToDeactivate);
-                roomToSoftDelete.IsRoomActive = false;
-                dbSoftDeleteRoom.SaveChanges();
-                Console.WriteLine("Rummet är nu avaktiverad!");
             }
-            Console.WriteLine("Tryck på enter för att fortsätta...");
+            Console.WriteLine("\nTryck på enter för att fortsätta...");
             Console.ReadKey();
         }
     }
