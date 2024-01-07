@@ -18,7 +18,7 @@ namespace HotelLibrary.Guests.DeleteGuests
             Console.WriteLine("| 0. gå tillbaka             |");
             Console.WriteLine("-----------------------------\n\n");
 
-            ReadingActiveGuest.ReadActiveGuests();
+            ReadingAllGuest.ReadAllGuests();
 
             using (var dbGuestDelete = new HotelChamDbContext())
             {

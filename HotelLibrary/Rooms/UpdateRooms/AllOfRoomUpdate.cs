@@ -47,8 +47,9 @@ namespace HotelLibrary.Rooms.UpdateRooms
                         {
                             Console.WriteLine($"RumsID: {roomToUpdate.RoomId}");
                             Console.WriteLine($"Rumsnummer: {roomToUpdate.RoomNumber}");
-                            Console.WriteLine($"Rums kapacitet: {roomToUpdate.Capacity}");
+                            Console.WriteLine($"Antal gäster: {roomToUpdate.Capacity}");
                             Console.WriteLine($"Pris per natt: {roomToUpdate.PricePerNight}");
+                            Console.WriteLine($"Rums storlek: {roomToUpdate.RoomType}");
                             Console.WriteLine($"Rums typ: {roomToUpdate.RoomType}");
                             Console.WriteLine($"Rums beskrivning: {roomToUpdate.Description}");
                             Console.WriteLine("---------------------------------------------------------------------------");

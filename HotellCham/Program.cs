@@ -15,12 +15,24 @@ namespace HotellCham
 
 
 
+/*
+·       Ett rum kan vara enkelrum eller dubbelrum. 
+·       För dubbelrum kan gälla att det finns möjlighet till att sätta in extrasängar (1 eller 2 beroende på rummets storlek).
+·       Ett rum kan bokas av en kund för en eller flera nätter.
+*/
+
 //--lägg till country och city på en guest. [V]
 //--lägg till foreign keys[V]
 //--Gör ett ERD[V]
 //Skapa ett admin alternativ med password.
 //--lägg in PUT (ge användaren alternativ på vad som ska uppdateras) (inkludera avaktivera) [V]
 //--Fixa så att den skippar counrty och city om man skippar hem adress[V]
+//--Skilj seedningen med ID:t (kolla alla tabeller) [V]
+//OBS Se alla gäster läggs till i menyn
+//--Vid raderingsfunktion av gäster så får inte användaren valet samt se inaktiva gäster. Tur nog är det bara menyn, du kan radera inaktiva gäster ändå. [V]
+//--ta bort boka ny gäst [V]
+//ange felmeddelande när man inte väljer bindestreck för bokningsdatum
+//--FIXA från Singleroom till enkelrum i seedningen
 
 
 

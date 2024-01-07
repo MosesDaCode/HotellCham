@@ -38,13 +38,13 @@ namespace HotelLibrary.Guests
                                 Console.WriteLine("\nInklusive riktnummer Tex. (+46 73826543)");
                                 Console.Write("Ange ett nytt tel-nummer:");
                                 guestToUpdate.Phone = Console.ReadLine();
-                                if (!string.IsNullOrEmpty(guestToUpdate.Phone) && guestToUpdate.Phone != "0" && !string.IsNullOrEmpty(guestToUpdate.Adress))
+                                if (!string.IsNullOrEmpty(guestToUpdate.Phone) && guestToUpdate.Phone != "0")
                                 {
-                                    Console.WriteLine("\nInklusive husnummer ");
+                                    Console.WriteLine("\nAlternativt, annars tryck eneter!");
                                     Console.Write("Ange en ny hemadress: ");
                                     guestToUpdate.Adress = Console.ReadLine();
-                                    if (guestToUpdate.Adress != "0")
-                                    {
+                                    if (guestToUpdate.Adress != "0" && !string.IsNullOrEmpty(guestToUpdate.Adress))
+                                    { 
                                         Console.Write("\nAnge ett land för gästen: ");
                                         guestToUpdate.Country = Console.ReadLine();
                                         if (guestToUpdate.Country != "0" && !string.IsNullOrEmpty(guestToUpdate.Country))
@@ -77,6 +77,12 @@ namespace HotelLibrary.Guests
                                         }
                                         
                                     }
+                                    else if (string.IsNullOrEmpty(guestToUpdate.Adress))
+                                    {
+                                        Console.WriteLine($"\nInfo om {guestToUpdate.LastName}, {guestToUpdate.FirstName} är ändrad.");
+                                        dbGuestUpdate.SaveChanges();
+                                        Console.ReadLine();
+                                    }
                                     else if (guestToUpdate.Adress == "0")
                                     {
                                         Console.Clear();
@@ -91,6 +97,8 @@ namespace HotelLibrary.Guests
                                 {
                                     Console.WriteLine($"\nInfo om {guestToUpdate.LastName}, {guestToUpdate.FirstName} är ändrad.");
                                     dbGuestUpdate.SaveChanges();
+                                    Console.ReadLine();
+
                                 }
                                 else if (guestToUpdate.Phone == "0")
                                 {
