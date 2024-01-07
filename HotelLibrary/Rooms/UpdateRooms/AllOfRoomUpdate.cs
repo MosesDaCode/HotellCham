@@ -80,7 +80,6 @@ namespace HotelLibrary.Rooms.UpdateRooms
                                         {
                                             dbRoomUpdate.SaveChanges();
                                             Console.WriteLine($"\nRum: {roomToUpdate.RoomNumber}, har uppdaterats!");
-
                                         }
                                     }
                                     else if (roomToUpdate.RoomSize == 0)
