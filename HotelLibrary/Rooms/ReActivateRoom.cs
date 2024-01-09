@@ -23,10 +23,10 @@ namespace HotelLibrary.Rooms
             using (var dbGetBackRoom = new HotelChamDbContext())
             {
 
-                Console.Write("\nAnge id för rummet du vill Återaktivera: ");
                 int roomIdToReactivate;
                 do
                 {
+                    Console.Write("\nAnge id för rummet du vill Återaktivera: ");
                     if (!int.TryParse(Console.ReadLine(), out roomIdToReactivate))
                     {
                         Console.WriteLine("\nID existerar inte!");
@@ -36,16 +36,24 @@ namespace HotelLibrary.Rooms
                         Console.Clear();
                         return;
                     }
-                    else
+                    
+
+                    var roomToGetBack = dbGetBackRoom.Rooms.Find(roomIdToReactivate);
+                    if (roomToGetBack != null)
                     {
+                        roomToGetBack.IsRoomActive = true;
+                        dbGetBackRoom.SaveChanges();
+                        Console.WriteLine($"\nRum: {roomToGetBack.RoomNumber} är nu aktiverad igen!");
                         break;
                     }
+                    else
+                    {
+                        Console.WriteLine($"\nID {roomIdToReactivate} existerar inte!");
+                    }
+
                 } while (true);
 
-                var roomToGetBack = dbGetBackRoom.Rooms.Find(roomIdToReactivate);
-                roomToGetBack.IsRoomActive = true;
-                dbGetBackRoom.SaveChanges();
-                Console.WriteLine($"\nRum: {roomToGetBack.RoomNumber} är nu aktiverad igen!");
+
             }
             Console.WriteLine("\nTryck på enter för att fortsätta...");
             Console.ReadKey();
