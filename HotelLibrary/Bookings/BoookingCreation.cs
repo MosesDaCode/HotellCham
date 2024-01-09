@@ -4,6 +4,7 @@ using HotelLibrary.Guests.ReadGuests;
 using HotelLibrary.Rooms.ReadingRooms;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,21 +24,77 @@ namespace HotelLibrary.Bookings
             {
                 while (true)
                 {
-                    Console.WriteLine("\nVälj ett alternativ");
-                    Console.WriteLine("1. Boka befintlig gäst.");
-                    Console.WriteLine("2. Boka ny gäst.");
-                    var newOrOldGuest = Console.ReadLine();
-
-                    if (!string.IsNullOrEmpty(newOrOldGuest) && newOrOldGuest == "1" && newOrOldGuest != "0")
+                    ReadingActiveGuest.ReadActiveGuests();
+                    Console.WriteLine("\nOm gästen är inte är befintlig (skapa gäst i gästmenyn)");
+                    Console.Write("Ange id för gästen som ska boka rummet:");
+                    if (int.TryParse(Console.ReadLine(), out int guestId))
                     {
-                        ReadingActiveGuest.ReadActiveGuests();
-                        Console.Write("\nAnge id för gästen som ska boka rummet:");
-                        if (int.TryParse(Console.ReadLine(), out int guestId))
+                        var selectedGuest = dbBookingCreate.Guests.Find(guestId);
+
+                        if (selectedGuest != null)
                         {
-                            var selectedGuest = dbBookingCreate.Guests.Find(guestId);
-                            if (selectedGuest != null)
+                            DateTime checkInDate;
+                            DateTime checkOutDate = DateTime.MinValue;
+                            while (true)
                             {
-                                ReadingAvailableRoom.ReadAvailableRooms();
+
+                                Console.WriteLine("\n(yyyy-MM-dd)");
+                                Console.Write("Ange ett datum att checka in: ");
+                                var checkInInput = Console.ReadLine();
+
+                                if (checkInInput == "0")
+                                {
+                                    Console.Clear();
+                                    return;
+                                }
+                                else if (string.IsNullOrEmpty(checkInInput) || !DateTime.TryParse(checkInInput, out checkInDate))
+                                {
+                                    Console.WriteLine("\nAnge ett datum med (yyyy-MM-dd)");
+                                    continue;
+                                }
+                                break;
+                            }
+
+                            while (true)
+                            {
+                                Console.WriteLine("\n(yyyy-MM-dd)");
+                                Console.Write("Ange ett datum att checka ut: ");
+                                var checkOutInput = Console.ReadLine();
+
+                                if (checkOutInput == "0")
+                                {
+                                    Console.Clear();
+                                    return;
+                                }
+                                else if (string.IsNullOrEmpty(checkOutInput) || !DateTime.TryParse(checkOutInput, out checkOutDate))
+                                {
+                                    Console.WriteLine("\nAnge ett datum med (yyyy-MM-dd)");
+                                    continue;
+                                }
+                                break;
+                            }
+
+                            var availableRooms = dbBookingCreate.Rooms
+                                .Where(r => !dbBookingCreate.Bookings
+                                .Any(b => b.RoomId == r.RoomId && checkInDate < b.CheckOutDate && checkOutDate > b.CheckInDate))
+                                .ToList();
+
+                            var totalNights = (checkOutDate - checkInDate).TotalDays;
+
+                            if (availableRooms.Any())
+                            {
+                                Console.WriteLine("\nTillgängliga rum under angivet datum!");
+                                Console.WriteLine("..................................................");
+                                foreach (var room in availableRooms)
+                                {
+                                    Console.WriteLine($"RumsId: {room.RoomId}");
+                                    Console.WriteLine($"Rumsnummer: {room.RoomNumber}");
+                                    Console.WriteLine($"Antal tillåtna gäster: {room.Capacity}");
+                                    Console.WriteLine($"Rumstyp: {room.RoomType}");
+                                    Console.WriteLine($"Pris per natt: {room.PricePerNight}");
+                                    Console.WriteLine($"Beskrivning: {room.Description}");
+                                    Console.WriteLine("--------------------------------------------------\n");
+                                }   
                                 Console.Write("\nAnge id för rummet du vill boka ovan: ");
                                 if (int.TryParse(Console.ReadLine(), out int roomId))
                                 {
@@ -49,7 +106,7 @@ namespace HotelLibrary.Bookings
                                         if (selectedRoom.RoomType == "Dubbelrum")
                                         {
                                             Console.WriteLine($"\nMax ({selectedRoom.Capacity}) gäster i rummet");
-                                            Console.WriteLine($"Exclusive {selectedGuest.LastName}, {selectedGuest.LastName} ");
+                                            Console.WriteLine($"Inkludera {selectedGuest.LastName}, {selectedGuest.LastName} ");
                                             Console.Write("Ange hur många gäster som ska sova i rummet?: ");
                                             guestCapacity = Convert.ToInt32(Console.ReadLine());
 
@@ -57,159 +114,125 @@ namespace HotelLibrary.Bookings
                                             Console.Write("Önskas även en extra säng till rummet?: ");
                                             extraBedInput = Console.ReadLine();
                                         }
-                                        if (selectedRoom.RoomType == "Singelrum" || selectedRoom.RoomType == "Dubbelrum" && !int.IsNegative(guestCapacity) && guestCapacity != 0 && guestCapacity <= selectedRoom.Capacity)
+                                        if (selectedRoom.RoomType == "Enkelrum" || selectedRoom.RoomType == "Dubbelrum" && !int.IsNegative(guestCapacity) && guestCapacity != 0 && guestCapacity <= selectedRoom.Capacity)
                                         {
-                                            Console.WriteLine("\n(yyyy-MM-dd)");
-                                            Console.Write("Ange ett datum att checka in: ");
-                                            var checkInInput = Console.ReadLine();
-                                            if (checkInInput == "0")
+
+
+
+                                            if (extraBedInput.ToUpper() == "J")
                                             {
-                                                Console.Clear();
-                                                return;
+                                                var newBooking = dbBookingCreate.Bookings
+                                                    .Join(dbBookingCreate.Guests, b => b.GuestId, g => g.GuestId, (b, g) => new { b, g })
+                                                    .Join(dbBookingCreate.Rooms, bg => bg.b.RoomId, r => r.RoomId, (bg, r) => new { bg, r })
+                                                    .Where(data => data.bg.b.RoomId == selectedRoom.RoomId)
+                                                    .Select(data => new Booking
+                                                    {
+                                                        GuestId = selectedGuest.GuestId,
+                                                        RoomId = selectedRoom.RoomId,
+                                                        NumberOfGuests = guestCapacity + 1,
+                                                        CheckInDate = checkInDate,
+                                                        CheckOutDate = checkOutDate,
+                                                        TotalPrice = (decimal)totalNights * selectedRoom.PricePerNight,
+                                                        IsBookingActive = true,
+                                                        ExtraBed = 1
+                                                    })
+                                                    .DefaultIfEmpty()
+                                                    .ToList();
+
+                                                selectedRoom.IsOccupied = true;
+                                                dbBookingCreate.AddRange(newBooking);
+                                                dbBookingCreate.SaveChanges();
+
+                                                Console.WriteLine($"\nGäst: {selectedGuest.LastName}, {selectedGuest.FirstName}");
+                                                Console.WriteLine($"Bokning för rum {selectedRoom.RoomNumber}.");
+                                                Console.WriteLine($"Check in datum: {checkInDate}");
+                                                Console.WriteLine($"Check ut datum: {checkOutDate}");
+                                                Console.WriteLine($"Antal gäster: {guestCapacity}");
+                                                Console.WriteLine($"Antal nätter: {totalNights}");
+                                                Console.WriteLine($"Pris per natt: {selectedRoom.PricePerNight}");
+                                                Console.WriteLine($"Total pris: {(decimal)totalNights * selectedRoom.PricePerNight}");
+                                                Console.WriteLine($"Extra säng: JA");
+
                                             }
-                                            else if (string.IsNullOrEmpty(checkInInput))
+                                            else if (extraBedInput.ToUpper() == "N")
                                             {
-                                                Console.WriteLine("\nAnge ett datum med (yyyy-MM-dd)");
+                                                var newBooking = dbBookingCreate.Bookings
+                                                    .Join(dbBookingCreate.Guests, b => b.GuestId, g => g.GuestId, (b, g) => new { b, g })
+                                                    .Join(dbBookingCreate.Rooms, bg => bg.b.RoomId, r => r.RoomId, (bg, r) => new { bg, r })
+                                                    .Where(data => data.bg.b.RoomId == selectedRoom.RoomId)
+                                                    .Select(data => new Booking
+                                                    {
+                                                        GuestId = selectedGuest.GuestId,
+                                                        RoomId = selectedRoom.RoomId,
+                                                        NumberOfGuests = guestCapacity + 1,
+                                                        CheckInDate = checkInDate,
+                                                        CheckOutDate = checkOutDate,
+                                                        TotalPrice = (decimal)totalNights * selectedRoom.PricePerNight,
+                                                        IsBookingActive = true,
+                                                    })
+                                                    .DefaultIfEmpty()
+                                                    .ToList();
+
+                                                selectedRoom.IsOccupied = true;
+                                                dbBookingCreate.AddRange(newBooking);
+                                                dbBookingCreate.SaveChanges();
+
+                                                Console.WriteLine($"\nGäst: {selectedGuest.LastName}, {selectedGuest.FirstName}");
+                                                Console.WriteLine($"Bokning för rum {selectedRoom.RoomNumber}.");
+                                                Console.WriteLine($"Check in datum: {checkInDate}");
+                                                Console.WriteLine($"Check ut datum: {checkOutDate}");
+                                                Console.WriteLine($"Antal gäster: {guestCapacity}");
+                                                Console.WriteLine($"Antal nätter: {totalNights}");
+                                                Console.WriteLine($"Pris per natt: {selectedRoom.PricePerNight}");
+                                                Console.WriteLine($"Total pris: {(decimal)totalNights * selectedRoom.PricePerNight}");
+                                                Console.WriteLine($"Extra säng: NEJ");
                                             }
-                                            if (DateTime.TryParse(checkInInput, out DateTime checkInDate))
+                                            else
                                             {
-                                                if (checkInDate >= DateTime.Now)
+                                                var newBooking = dbBookingCreate.Bookings
+                                                        .Join(dbBookingCreate.Guests, b => b.GuestId, g => g.GuestId, (b, g) => new { b, g })
+                                                        .Join(dbBookingCreate.Rooms, bg => bg.b.RoomId, r => r.RoomId, (bg, r) => new { bg, r })
+                                                        .Where(data => data.bg.b.RoomId == selectedRoom.RoomId)
+                                                        .Select(data => new Booking
+                                                        {
+                                                            GuestId = selectedGuest.GuestId,
+                                                            RoomId = selectedRoom.RoomId,
+                                                            NumberOfGuests = 1,
+                                                            CheckInDate = checkInDate,
+                                                            CheckOutDate = checkOutDate,
+                                                            TotalPrice = (decimal)totalNights * selectedRoom.PricePerNight,
+                                                            IsBookingActive = true,
+                                                        })
+                                                        .DefaultIfEmpty()
+                                                        .ToList();
+                                                if (newBooking.Any())
                                                 {
-                                                    Console.WriteLine("\n(yyyy-MM-dd)");
-                                                    Console.Write("Ange ett datum att checka ut: ");
-                                                    var checkOutInput = Console.ReadLine();
-                                                    if (checkOutInput == "0")
-                                                    {
-                                                        Console.Clear();
-                                                        return;
-                                                    }
-                                                    else if (string.IsNullOrEmpty(checkOutInput))
-                                                    {
-                                                        Console.WriteLine("\nAnge ett datum med (yyyy-MM-dd)");
-                                                    }
-                                                    if (DateTime.TryParse(checkOutInput, out DateTime checkOutDate))
-                                                    {
-                                                        var totalNights = (checkOutDate - checkInDate).TotalDays;
 
+                                                    selectedRoom.IsOccupied = true;
+                                                    dbBookingCreate.AddRange(newBooking);
+                                                    dbBookingCreate.SaveChanges();
 
-                                                        if (extraBedInput.ToUpper() == "J")
-                                                        {
-                                                            var newBooking = dbBookingCreate.Bookings
-                                                                .Join(dbBookingCreate.Guests, b => b.GuestId, g => g.GuestId, (b, g) => new { b, g })
-                                                                .Join(dbBookingCreate.Rooms, bg => bg.b.RoomId, r => r.RoomId, (bg, r) => new { bg, r })
-                                                                .Where(data => data.bg.b.RoomId == selectedRoom.RoomId)
-                                                                .Select(data => new Booking
-                                                                {
-                                                                    GuestId = selectedGuest.GuestId,
-                                                                    RoomId = selectedRoom.RoomId,
-                                                                    NumberOfGuests = guestCapacity + 1,
-                                                                    CheckInDate = checkInDate,
-                                                                    CheckOutDate = checkOutDate,
-                                                                    TotalPrice = (decimal)totalNights * selectedRoom.PricePerNight,
-                                                                    IsBookingActive = true,
-                                                                    ExtraBed = 1
-                                                                })
-                                                                .DefaultIfEmpty()
-                                                                .ToList();
-
-                                                            selectedRoom.IsOccupied = true;
-                                                            dbBookingCreate.AddRange(newBooking);
-                                                            dbBookingCreate.SaveChanges();
-
-                                                            Console.WriteLine($"\nGäst: {selectedGuest.LastName}, {selectedGuest.FirstName}");
-                                                            Console.WriteLine($"Bokning för rum {selectedRoom.RoomNumber}.");
-                                                            Console.WriteLine($"Check in datum: {checkInDate}");
-                                                            Console.WriteLine($"Check ut datum: {checkOutDate}");
-                                                            Console.WriteLine($"Antal gäster: {guestCapacity}");
-                                                            Console.WriteLine($"Antal nätter: {totalNights}");
-                                                            Console.WriteLine($"Pris per natt: {selectedRoom.PricePerNight}");
-                                                            Console.WriteLine($"Total pris: {(decimal)totalNights * selectedRoom.PricePerNight}");
-                                                            Console.WriteLine($"Extra säng: JA");
-
-                                                        }
-                                                        else if (extraBedInput.ToUpper() == "N")
-                                                        {
-                                                            var newBooking = dbBookingCreate.Bookings
-                                                                .Join(dbBookingCreate.Guests, b => b.GuestId, g => g.GuestId, (b, g) => new { b, g })
-                                                                .Join(dbBookingCreate.Rooms, bg => bg.b.RoomId, r => r.RoomId, (bg, r) => new { bg, r })
-                                                                .Where(data => data.bg.b.RoomId == selectedRoom.RoomId)
-                                                                .Select(data => new Booking
-                                                                {
-                                                                    GuestId = selectedGuest.GuestId,
-                                                                    RoomId = selectedRoom.RoomId,
-                                                                    NumberOfGuests = guestCapacity + 1,
-                                                                    CheckInDate = checkInDate,
-                                                                    CheckOutDate = checkOutDate,
-                                                                    TotalPrice = (decimal)totalNights * selectedRoom.PricePerNight,
-                                                                    IsBookingActive = true,
-                                                                })
-                                                                .DefaultIfEmpty()
-                                                                .ToList();
-
-                                                            selectedRoom.IsOccupied = true;
-                                                            dbBookingCreate.AddRange(newBooking);
-                                                            dbBookingCreate.SaveChanges();
-
-                                                            Console.WriteLine($"\nGäst: {selectedGuest.LastName}, {selectedGuest.FirstName}");
-                                                            Console.WriteLine($"Bokning för rum {selectedRoom.RoomNumber}.");
-                                                            Console.WriteLine($"Check in datum: {checkInDate}");
-                                                            Console.WriteLine($"Check ut datum: {checkOutDate}");
-                                                            Console.WriteLine($"Antal gäster: {guestCapacity}");
-                                                            Console.WriteLine($"Antal nätter: {totalNights}");
-                                                            Console.WriteLine($"Pris per natt: {selectedRoom.PricePerNight}");
-                                                            Console.WriteLine($"Total pris: {(decimal)totalNights * selectedRoom.PricePerNight}");
-                                                            Console.WriteLine($"Extra säng: NEJ");
-                                                        }
-                                                        else
-                                                        {
-                                                            var newBooking = dbBookingCreate.Bookings
-                                                                    .Join(dbBookingCreate.Guests, b => b.GuestId, g => g.GuestId, (b, g) => new { b, g })
-                                                                    .Join(dbBookingCreate.Rooms, bg => bg.b.RoomId, r => r.RoomId, (bg, r) => new { bg, r })
-                                                                    .Where(data => data.bg.b.RoomId == selectedRoom.RoomId)
-                                                                    .Select(data => new Booking
-                                                                    {
-                                                                        GuestId = selectedGuest.GuestId,
-                                                                        RoomId = selectedRoom.RoomId,
-                                                                        NumberOfGuests = 1,
-                                                                        CheckInDate = checkInDate,
-                                                                        CheckOutDate = checkOutDate,
-                                                                        TotalPrice = (decimal)totalNights * selectedRoom.PricePerNight,
-                                                                        IsBookingActive = true,
-                                                                    })
-                                                                    .DefaultIfEmpty()
-                                                                    .ToList();
-                                                            if (newBooking.Any())
-                                                            {
-                                                                selectedRoom.IsOccupied = true;
-                                                                dbBookingCreate.AddRange(newBooking);
-                                                                dbBookingCreate.SaveChanges();
-
-                                                                Console.WriteLine($"\nGäst: {selectedGuest.LastName}, {selectedGuest.FirstName}");
-                                                                Console.WriteLine($"Bokning för rum {selectedRoom.RoomNumber}.");
-                                                                Console.WriteLine($"Check in datum: {checkInDate}");
-                                                                Console.WriteLine($"Check ut datum: {checkOutDate}");
-                                                                Console.WriteLine($"Antal gäster: 1");
-                                                                Console.WriteLine($"Antal nätter: {totalNights}");
-                                                                Console.WriteLine($"Pris per natt: {selectedRoom.PricePerNight}");
-                                                                Console.WriteLine($"Total pris: {(decimal)totalNights * selectedRoom.PricePerNight}");
-                                                            }
-                                                            else
-                                                            {
-                                                                Console.WriteLine("\nDet gick inte att boka gästen!");
-                                                            }
-                                                        }
-                                                        break;
-
-                                                    }
+                                                    Console.WriteLine($"\nGäst: {selectedGuest.LastName}, {selectedGuest.FirstName}");
+                                                    Console.WriteLine($"Bokning för rum {selectedRoom.RoomNumber}.");
+                                                    Console.WriteLine($"Check in datum: {checkInDate}");
+                                                    Console.WriteLine($"Check ut datum: {checkOutDate}");
+                                                    Console.WriteLine($"Antal gäster: 1");
+                                                    Console.WriteLine($"Antal nätter: {totalNights}");
+                                                    Console.WriteLine($"Pris per natt: {selectedRoom.PricePerNight}");
+                                                    Console.WriteLine($"Total pris: {(decimal)totalNights * selectedRoom.PricePerNight}");
                                                 }
                                                 else
                                                 {
-                                                    Console.WriteLine("Du har angett ett ogiltigt datum!");
+                                                    Console.WriteLine("\nDet gick inte att boka gästen!");
                                                 }
                                             }
-
+                                            break;
 
                                         }
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Du har angett ett ogiltigt datum!");
                                     }
                                 }
                                 else if (roomId == 0)
@@ -219,39 +242,27 @@ namespace HotelLibrary.Bookings
                                     return;
                                 }
                             }
-                            else if (!string.IsNullOrEmpty(newOrOldGuest) && newOrOldGuest == "2")
-                            {
-                                GuestCreation.CreateGuest();
-                            }
-                            else if (newOrOldGuest == "0")
-                            {
-                                Console.Clear();
-                                return;
-                            }
-                            else
-                            {
-                                Console.WriteLine("Du måste ange alternativ 1 eller 2!!");
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine("\nID existerar inte!");
+
                         }
                     }
-                    else if (!string.IsNullOrEmpty(newOrOldGuest) && newOrOldGuest == "2")
-                    {
-                        GuestCreation.CreateGuest();
-                    }
-                    else if (newOrOldGuest == "0")
+                    else if (guestId == 0)
                     {
                         Console.Clear();
                         return;
                     }
+                    else
+                    {
+                        Console.WriteLine("\nID existerar inte!");
+                    }
                 }
 
             }
+
         }
+
+
     }
+
 }
 
 

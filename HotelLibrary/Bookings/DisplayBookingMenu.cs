@@ -22,20 +22,19 @@ namespace HotelLibrary.Bookings
                         BoookingCreation.CreateBooking();
                         Console.WriteLine("\nTryck på enter för att gå tillbaka...");
                         Console.ReadKey();
-                        Console.Clear();
                         break;
                     case "2":
                         DisplayReadingBookings.ReadBookings();
+                        Console.Clear();
                         break;
                     case "3":
                         DisplayBookingUpdateMenu.BookingEditor();
                         Console.WriteLine("\nTryck på enter för att gå tillbaka...");
                         Console.ReadKey();
-                        Console.Clear();
                         break;
                     case "4":
                         BookingDelete.DeleteBooking();
-                        
+                        Console.Clear();
                         break;
                     case "0":
                         Console.Clear();
@@ -44,7 +43,6 @@ namespace HotelLibrary.Bookings
                     default:
                         Console.WriteLine("Fel val av meny tryck på enter och testa igen.");
                         Console.ReadKey();
-                        Console.Clear();
                         break;
                 }
             }

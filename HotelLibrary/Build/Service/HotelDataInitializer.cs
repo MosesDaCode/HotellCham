@@ -20,7 +20,7 @@ namespace HotelLibrary.Build.Service
         }
         private void SeedGuests(HotelChamDbContext dbContext)
         {
-            if (!dbContext.Guests.Any(g => g.FirstName == "Mousa"))
+            if (!dbContext.Guests.Any(g => g.GuestId == 1))
             {
                 dbContext.Guests.Add(new Guest
                 {
@@ -31,7 +31,7 @@ namespace HotelLibrary.Build.Service
                     IsGuestActive = true
                 });
             }
-            if (!dbContext.Guests.Any(g => g.FirstName == "Snel"))
+            if (!dbContext.Guests.Any(g => g.GuestId == 2))
             {
                 dbContext.Guests.Add(new Guest
                 {
@@ -45,7 +45,7 @@ namespace HotelLibrary.Build.Service
                     IsGuestActive = true
                 });
             }
-            if (!dbContext.Guests.Any(g => g.FirstName == "Örjan"))
+            if (!dbContext.Guests.Any(g => g.GuestId == 3))
             {
                 dbContext.Guests.Add(new Guest
                 {
@@ -59,7 +59,7 @@ namespace HotelLibrary.Build.Service
                     IsGuestActive = true
                 });
             }
-            if (!dbContext.Guests.Any(g => g.FirstName == "Joakim"))
+            if (!dbContext.Guests.Any(g => g.GuestId == 4))
             {
                 dbContext.Guests.Add(new Guest
                 {
@@ -76,7 +76,7 @@ namespace HotelLibrary.Build.Service
         }
         private void SeedRoom(HotelChamDbContext dbContext)
         {
-            if (!dbContext.Rooms.Any(g => g.RoomNumber == 101))
+            if (!dbContext.Rooms.Any(r => r.RoomId == 1))
             {
                 dbContext.Rooms.Add(new Room
                 {
@@ -84,13 +84,13 @@ namespace HotelLibrary.Build.Service
                     Capacity = 1,
                     IsOccupied = false,
                     PricePerNight = 780,
-                    RoomType = "Singelrum",
+                    RoomType = "Enkelrum",
                     Description = "Ett Trevligt singelrum med utsikt över Mälarsjön",
                     IsRoomActive = true,
                     RoomSize = 13
                 });
             }
-            if (!dbContext.Rooms.Any(g => g.RoomNumber == 102))
+            if (!dbContext.Rooms.Any(r => r.RoomId  == 2))
             {
                 dbContext.Rooms.Add(new Room
                 {
@@ -98,13 +98,13 @@ namespace HotelLibrary.Build.Service
                     Capacity = 1,
                     IsOccupied = false,
                     PricePerNight = 780,
-                    RoomType = "Singelrum",
+                    RoomType = "Enkelrum",
                     Description = "Ett Trevligt singelrum med utsikt över Mälarsjön",
                     IsRoomActive = true,
                     RoomSize = 15
                 });
             }
-            if (!dbContext.Rooms.Any(g => g.RoomNumber == 103))
+            if (!dbContext.Rooms.Any(r => r.RoomId == 3))
             {
                 dbContext.Rooms.Add(new Room
                 {
@@ -118,7 +118,7 @@ namespace HotelLibrary.Build.Service
                     RoomSize = 24
                 });
             }
-            if (!dbContext.Rooms.Any(g => g.RoomNumber == 104))
+            if (!dbContext.Rooms.Any(r => r.RoomId == 4))
             {
                 dbContext.Rooms.Add(new Room
                 {
