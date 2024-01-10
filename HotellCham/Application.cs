@@ -19,27 +19,20 @@ namespace HotellCham
             {
                 switch (DisplayMenu.MainMenu())
                 {
+                    
                     case "1":
-                        //Checkin
-                        Console.Clear();
-                        break;
-                    case "2":
-                        //CheckOut
-                        Console.Clear();
-                        break;
-                    case "3":
                         Console.Clear();
                         DisplayGuestMenu.GuestMenu();
                         break;
-                    case "4":
+                    case "2":
                         Console.Clear();
                         DisplayRoomMenu.RoomMenu();
                         break;
-                    case "5":
+                    case "3":
                         Console.Clear();
                         DisplayBookingMenu.BookingMenu();
                         break;
-                    case "6":
+                    case "4":
                         Console.Clear();
                         DisplayInvoiceMenu.InvoiceMenu();
                         break;

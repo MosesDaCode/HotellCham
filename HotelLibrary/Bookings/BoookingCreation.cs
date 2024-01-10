@@ -2,6 +2,7 @@
 using HotelLibrary.Build.Service;
 using HotelLibrary.Guests.ReadGuests;
 using HotelLibrary.Rooms.ReadingRooms;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -27,7 +28,8 @@ namespace HotelLibrary.Bookings
                     ReadingActiveGuest.ReadActiveGuests();
                     Console.WriteLine("\nOm gästen är inte är befintlig (skapa gäst i gästmenyn)");
                     Console.Write("Ange id för gästen som ska boka rummet:");
-                    if (int.TryParse(Console.ReadLine(), out int guestId))
+                    int.TryParse(Console.ReadLine(), out int guestId);
+                    if (guestId != 0 && guestId != null)
                     {
                         var selectedGuest = dbBookingCreate.Guests.Find(guestId);
 

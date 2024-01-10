@@ -17,12 +17,10 @@ namespace HotelLibrary
             Console.WriteLine("----------------\n\n");
 
             Console.WriteLine("-------------------------");
-            Console.WriteLine("| 1. Checka in          |");
-            Console.WriteLine("| 2. Checka ut          |");
-            Console.WriteLine("| 3. Gäst meny          |");
-            Console.WriteLine("| 4. Rums meny          |");
-            Console.WriteLine("| 5. Boknings meny      |");
-            Console.WriteLine("| 6. Faktura meny       |");
+            Console.WriteLine("| 1. Gäst meny          |");
+            Console.WriteLine("| 2. Rums meny          |");
+            Console.WriteLine("| 3. Boknings meny      |");
+            Console.WriteLine("| 4. Faktura meny       |");
             Console.WriteLine("| 0. Avsluta            |");
             Console.WriteLine("-------------------------");
             Console.Write("Val: ");

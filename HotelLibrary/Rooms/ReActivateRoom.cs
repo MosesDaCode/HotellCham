@@ -36,7 +36,6 @@ namespace HotelLibrary.Rooms
                         Console.Clear();
                         return;
                     }
-                    
 
                     var roomToGetBack = dbGetBackRoom.Rooms.Find(roomIdToReactivate);
                     if (roomToGetBack != null)
