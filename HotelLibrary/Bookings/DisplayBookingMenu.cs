@@ -28,7 +28,7 @@ namespace HotelLibrary.Bookings
                         Console.Clear();
                         break;
                     case "3":
-                        DisplayBookingUpdateMenu.BookingEditor();
+                        EditBooking.EditingBooking();
                         Console.WriteLine("\nTryck på enter för att gå tillbaka...");
                         Console.ReadKey();
                         break;

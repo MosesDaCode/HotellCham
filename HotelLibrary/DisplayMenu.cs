@@ -16,13 +16,13 @@ namespace HotelLibrary
             Console.WriteLine("| Hotell Cham  |");
             Console.WriteLine("----------------\n\n");
 
-            Console.WriteLine("-------------------------");
-            Console.WriteLine("| 1. Gäst meny          |");
-            Console.WriteLine("| 2. Rums meny          |");
-            Console.WriteLine("| 3. Boknings meny      |");
-            Console.WriteLine("| 4. Faktura meny       |");
-            Console.WriteLine("| 0. Avsluta            |");
-            Console.WriteLine("-------------------------");
+            Console.WriteLine("-----------------------------------------");
+            Console.WriteLine("| 1. Gäst meny                          |");
+            Console.WriteLine("| 2. Rums meny                          |");
+            Console.WriteLine("| 3. Boknings meny                      |");
+            Console.WriteLine("| 4. Faktura meny (Under konstruktion)  |");
+            Console.WriteLine("| 0. Avsluta                            |");
+            Console.WriteLine("-----------------------------------------");
             Console.Write("Val: ");
             string mainChoice = Console.ReadLine();
             return mainChoice;
@@ -75,7 +75,7 @@ namespace HotelLibrary
             Console.WriteLine("------------------------------");
             Console.WriteLine("| 1. Boka ett rum            |");
             Console.WriteLine("| 2. Se bokningar            |");
-            Console.WriteLine("| 3. Uppdatera bokning       |");
+            Console.WriteLine("| 3. Ändra bokning           |");
             Console.WriteLine("| 4. Avboka                  |");
             Console.WriteLine("| 0. Gå tillbaka             |");
             Console.WriteLine("------------------------------");

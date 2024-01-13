@@ -15,7 +15,7 @@ namespace HotelLibrary.Rooms
         {
             Console.Clear();
             Console.WriteLine("---------------------");
-            Console.WriteLine("| Återaktivera rim  |");
+            Console.WriteLine("| Återaktivera rum  |");
             Console.WriteLine("| 0. gå tillbaka    |");
             Console.WriteLine("--------------------\n\n");
 
@@ -40,9 +40,18 @@ namespace HotelLibrary.Rooms
                     var roomToGetBack = dbGetBackRoom.Rooms.Find(roomIdToReactivate);
                     if (roomToGetBack != null)
                     {
+                        if (!roomToGetBack.IsRoomActive == true)
+                        {
                         roomToGetBack.IsRoomActive = true;
                         dbGetBackRoom.SaveChanges();
                         Console.WriteLine($"\nRum: {roomToGetBack.RoomNumber} är nu aktiverad igen!");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Rum: {roomToGetBack.RoomNumber} är redan aktiv!!!");
+                            continue;
+                        }
+
                         break;
                     }
                     else
