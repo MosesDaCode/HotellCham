@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HotelLibrary.Bookings
+namespace HotelLibrary.Bookings.DeleteBooking
 {
     public class BookingDelete
     {
@@ -19,7 +19,7 @@ namespace HotelLibrary.Bookings
                 {
                     Console.Write("\nAnge ID för bokningen som du vill ta bort:");
                     if (int.TryParse(Console.ReadLine(), out bookingId) && bookingId != 0)
-                     {
+                    {
                         var bookingToDelete =
                             (from b in dbBookingDelete.Bookings
                              join g in dbBookingDelete.Guests on b.GuestId equals g.GuestId

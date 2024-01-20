@@ -1,5 +1,6 @@
 ﻿using HotelLibrary.Build.Service;
 using HotelLibrary.Build.Service;
+using HotelLibrary.Rooms.CreateRoom;
 using HotelLibrary.Rooms.ReadingRooms;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace HotelLibrary.Rooms.UpdateRooms
 {
-    public class AllOfRoomUpdate : CreateRoom
+    public class AllOfRoomUpdate : RoomCreate
     {
         public static void UpdateWholeRoom()
         {
@@ -66,7 +67,7 @@ namespace HotelLibrary.Rooms.UpdateRooms
                             if (roomToUpdate.PricePerNight != 0)
                             {
                                 
-                                roomToUpdate.RoomType = CreateRoom.RoomTypeSwitch();
+                                roomToUpdate.RoomType = RoomCreate.RoomTypeSwitch();
                                 if (roomToUpdate.RoomType != "0")
                                 {
                                     Console.WriteLine("\n(Ange i Kvadratmeter)");

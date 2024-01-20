@@ -32,8 +32,8 @@ namespace HotelLibrary.Rooms.UpdateRooms
                         Console.WriteLine("-----------------------------");
                         foreach (var room in displayOldRoomSize)
                         {
-                            Console.WriteLine($"Rums nummer: {roomSizeToUpdate.RoomNumber}");
-                            Console.WriteLine($"Rums storlek: {roomSizeToUpdate.RoomSize} KVM");
+                            Console.WriteLine($"Rumsnummer: {roomSizeToUpdate.RoomNumber}");
+                            Console.WriteLine($"Rumsstorlek: {roomSizeToUpdate.RoomSize} KVM");
 
                             Console.WriteLine("-----------------------------");
                         }
@@ -43,7 +43,6 @@ namespace HotelLibrary.Rooms.UpdateRooms
                         {
                             dbRoomSizeUpdate.SaveChanges();
                             Console.WriteLine($"\nRum: {roomSizeToUpdate.RoomNumber} är nu {roomSizeToUpdate.RoomSize} KVM.");
-                            Console.WriteLine("Tryck på enter för att fortsätta...");
                         }
                         else if (roomSizeToUpdate.PricePerNight == 0)
                         {

@@ -1,14 +1,13 @@
 ﻿using HotelLibrary.Build.Service;
-using HotelLibrary.Rooms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HotelLibrary.Rooms
+namespace HotelLibrary.Rooms.CreateRoom
 {
-    public class CreateRoom
+    public class RoomCreate
     {
         public static void CreatingRoom()
         {
@@ -153,14 +152,16 @@ namespace HotelLibrary.Rooms
         }
         public static string RoomTypeSwitch()
         {
-            Console.WriteLine("\nVad är det för typ av rum?");
-            Console.WriteLine("1. EnkelRum");
-            Console.WriteLine("2. DubbelRum");
-            Console.WriteLine("0. Gå Tillbaka");
-            string roomTypeChoice = Console.ReadLine();
+            string roomTypeChoice = null;
             bool isRoomType = true;
             while (isRoomType)
             {
+                Console.WriteLine("\nVad är det för typ av rum?");
+                Console.WriteLine("1. EnkelRum");
+                Console.WriteLine("2. DubbelRum");
+                Console.WriteLine("0. Gå Tillbaka");
+                roomTypeChoice = Console.ReadLine();
+
                 switch (roomTypeChoice)
                 {
                     case "1":
@@ -177,7 +178,7 @@ namespace HotelLibrary.Rooms
                         Console.WriteLine("\nFel val av meny tryck på enter och testa igen.");
                         Console.ReadKey();
                         Console.Clear();
-                        break;
+                        continue;
                 }
             }
             return roomTypeChoice;

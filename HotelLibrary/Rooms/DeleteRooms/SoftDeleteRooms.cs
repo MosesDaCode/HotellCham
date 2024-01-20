@@ -24,14 +24,14 @@ namespace HotelLibrary.Rooms.DeleteRooms
             using (var dbSoftDeleteRoom = new HotelChamDbContext())
             {
 
-                Console.Write("Ange id för gästen du vill ta bort: ");
+                Console.Write("Ange id för rummet du vill ta bort: ");
                 int roomIdToDeactivate;
                 do
                 {
                     if (!int.TryParse(Console.ReadLine(), out roomIdToDeactivate))
                     {
                         Console.WriteLine("\nOgiltigt ID!!!!");
-                        Console.Write("Ange id för gästen du vill ta bort: ");
+                        Console.Write("Ange id för rummet du vill ta bort: ");
                     }
                     else if (roomIdToDeactivate == 0)
                     {

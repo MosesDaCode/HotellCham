@@ -32,7 +32,7 @@ namespace HotelLibrary.Rooms.UpdateRooms
                         Console.WriteLine("-----------------------------");
                         foreach (var room in displayOldRoomCap)
                         {
-                            Console.WriteLine($"Rums nummer: {roomCapToUpdate.RoomNumber}");
+                            Console.WriteLine($"Rumsnummer: {roomCapToUpdate.RoomNumber}");
                             Console.WriteLine($"Antal gäster: {roomCapToUpdate.Capacity}");
 
                             Console.WriteLine("-----------------------------");

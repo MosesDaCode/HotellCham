@@ -5,7 +5,7 @@ using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-namespace HotelLibrary.Build;
+namespace HotelLibrary.Guests.CreateGuest;
 
 public class GuestCreation
 {

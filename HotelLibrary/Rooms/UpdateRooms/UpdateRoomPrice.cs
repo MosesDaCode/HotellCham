@@ -33,7 +33,7 @@ namespace HotelLibrary.Rooms.UpdateRooms
                         Console.WriteLine("-----------------------------");
                         foreach (var room in displayOldRoomPrice)
                         {
-                            Console.WriteLine($"Rums nummer: {roomPriceToUpdate.RoomNumber}");
+                            Console.WriteLine($"Rumsnummer: {roomPriceToUpdate.RoomNumber}");
                             Console.WriteLine($"Pris per natt: {roomPriceToUpdate.PricePerNight} kr");
 
                             Console.WriteLine("-----------------------------");
@@ -46,7 +46,6 @@ namespace HotelLibrary.Rooms.UpdateRooms
                         {
                             dbRoomPriceUpdate.SaveChanges();
                             Console.WriteLine($"\nRum: {roomPriceToUpdate.RoomNumber} kostar nu {roomPriceToUpdate.PricePerNight}kr per natt.");
-                            Console.WriteLine("Tryck på enter för att fortsätta...");
                         }
                         else if (roomPriceToUpdate.PricePerNight == 0)
                         {

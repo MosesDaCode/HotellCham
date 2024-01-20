@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HotelLibrary.Rooms
+namespace HotelLibrary.Rooms.ReActivateRoom
 {
-    public class ReActivateRoom
+    public class RoomReActivate
     {
         public static void GetBackRoom()
         {
@@ -27,9 +27,17 @@ namespace HotelLibrary.Rooms
                 do
                 {
                     Console.Write("\nAnge id för rummet du vill Återaktivera: ");
-                    if (!int.TryParse(Console.ReadLine(), out roomIdToReactivate))
+                    string roomIdToReactivateString = Console.ReadLine();
+
+                    if (string.IsNullOrEmpty(roomIdToReactivateString))
+                    {
+                        Console.WriteLine("\nDu kan inte ange ett tomt svar...");
+                        continue;
+                    }
+                    if (!int.TryParse(roomIdToReactivateString, out roomIdToReactivate))
                     {
                         Console.WriteLine("\nID existerar inte!");
+                        continue;
                     }
                     else if (roomIdToReactivate == 0)
                     {
@@ -42,9 +50,9 @@ namespace HotelLibrary.Rooms
                     {
                         if (!roomToGetBack.IsRoomActive == true)
                         {
-                        roomToGetBack.IsRoomActive = true;
-                        dbGetBackRoom.SaveChanges();
-                        Console.WriteLine($"\nRum: {roomToGetBack.RoomNumber} är nu aktiverad igen!");
+                            roomToGetBack.IsRoomActive = true;
+                            dbGetBackRoom.SaveChanges();
+                            Console.WriteLine($"\nRum: {roomToGetBack.RoomNumber} är nu aktiverad igen!");
                         }
                         else
                         {
@@ -56,7 +64,7 @@ namespace HotelLibrary.Rooms
                     }
                     else
                     {
-                        Console.WriteLine($"\nID {roomIdToReactivate} existerar inte!");
+                        Console.WriteLine($"\nRums ID: {roomIdToReactivate} existerar inte");
                     }
 
                 } while (true);

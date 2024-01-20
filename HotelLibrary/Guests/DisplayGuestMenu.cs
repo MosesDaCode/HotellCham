@@ -1,5 +1,6 @@
-﻿using HotelLibrary.Build;
+﻿using HotelLibrary.Guests.CreateGuest;
 using HotelLibrary.Guests.DeleteGuests;
+using HotelLibrary.Guests.ReActivateGuest;
 using HotelLibrary.Guests.ReadGuests;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace HotelLibrary.Guests
 {
-     public class DisplayGuestMenu
+    public class DisplayGuestMenu
     {
         public static void GuestMenu()
         {
@@ -32,7 +33,7 @@ namespace HotelLibrary.Guests
                         SoftDeleteGuests.SoftDeleteGuest();
                         break;
                     case "5":
-                        ReActiveateGuest.GetGuestBack();
+                        GuestReActivate.GetGuestBack();
                         break;
                     case "6":
                         GuestDelete.DeleteGuest();

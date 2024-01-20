@@ -67,8 +67,8 @@ namespace HotelLibrary.Bookings.UpdateBookings
                         Console.WriteLine($"Antal gäster i bokning: {chosenBooking.NumberOfGuests}");
                         Console.WriteLine("---------------------------------------------------------------------------");
 
-                        DateTime newCheckOutDate = chosenBooking.CheckOutDate;
-                        DateTime newCheckInDate = chosenBooking.CheckInDate;
+                        DateOnly newCheckOutDate = chosenBooking.CheckOutDate;
+                        DateOnly newCheckInDate = chosenBooking.CheckInDate;
 
                         string newCheckInInput;
                         string newCheckOutInput;
@@ -96,9 +96,9 @@ namespace HotelLibrary.Bookings.UpdateBookings
                                     Console.WriteLine("\nAnge ett datum med (yyyy-MM-dd)");
                                 }
 
-                                if (DateTime.TryParse(newCheckInInput, out newCheckInDate))
+                                if (DateOnly.TryParse(newCheckInInput, out newCheckInDate))
                                 {
-                                    if (newCheckInDate >= DateTime.Now)
+                                    if (newCheckInDate >= DateOnly.FromDateTime(DateTime.Now))
                                     {
                                         Console.WriteLine("\n(J/N)");
                                         Console.Write("Vill du ändra på utcheckningsdatum? " +
@@ -118,7 +118,7 @@ namespace HotelLibrary.Bookings.UpdateBookings
                                             {
                                                 Console.WriteLine("\nAnge ett datum med (yyyy-MM-dd)");
                                             }
-                                            DateTime.TryParse(newCheckOutInput, out newCheckOutDate);
+                                            DateOnly.TryParse(newCheckOutInput, out newCheckOutDate);
                                             break;
                                         }
                                         else if (ifCheckOutDateChoice.ToUpper() == "N")
@@ -161,7 +161,7 @@ namespace HotelLibrary.Bookings.UpdateBookings
                                     {
                                         Console.WriteLine("\nAnge ett datum med (yyyy-MM-dd)");
                                     }
-                                    DateTime.TryParse(newCheckOutInput, out newCheckOutDate);
+                                    DateOnly.TryParse(newCheckOutInput, out newCheckOutDate);
                                     break;
                                 }
                                 else if (ifCheckOutDateChoice.ToUpper() == "N")
@@ -194,7 +194,7 @@ namespace HotelLibrary.Bookings.UpdateBookings
                         if (ifnewRoomChoice.ToUpper() == "J")
                         {
                             var availableRooms = dbUpdateBooking.Rooms
-                                    .Where(r => !dbUpdateBooking.Bookings
+                                    .Where(r => r.IsRoomActive && !dbUpdateBooking.Bookings
                                     .Any(b => b.RoomId == r.RoomId && newCheckInDate < b.CheckOutDate && newCheckOutDate > b.CheckInDate
                                     || b.RoomId == r.RoomId && b.CheckInDate < b.CheckOutDate && b.CheckOutDate > b.CheckInDate))
                                     .ToList();
@@ -255,7 +255,7 @@ namespace HotelLibrary.Bookings.UpdateBookings
 
                                                 }
                                             }
-                                            else if (newRoomToBook.RoomType == "EnkelRum")
+                                            else
                                             {
                                                 break;
                                             }

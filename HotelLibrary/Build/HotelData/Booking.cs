@@ -25,17 +25,17 @@ namespace HotelLibrary.Build.Service
         public int GuestId { get; set; }
 
         [Required]
-        public DateTime CheckInDate { get; set; }
+        public DateOnly CheckInDate { get; set; }
 
         [Required]
-        public DateTime CheckOutDate { get; set; }
+        public DateOnly CheckOutDate { get; set; }
 
         [Required]
         [Column(TypeName = "decimal(18, 2)")]
         public decimal TotalPrice { get; set; }
 
-        [Range(0,2)]
-        public int? ExtraBed { get; set; }
+        [Range(0, 2)]
+        public int? ExtraBed { get; set; } = 0;
 
         [Required]
         public bool IsPaid { get; set; }

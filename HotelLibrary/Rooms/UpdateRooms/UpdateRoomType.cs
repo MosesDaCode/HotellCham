@@ -1,4 +1,5 @@
 ﻿using HotelLibrary.Build.Service;
+using HotelLibrary.Rooms.CreateRoom;
 using HotelLibrary.Rooms.ReadingRooms;
 using System;
 using System.Collections.Generic;
@@ -28,23 +29,22 @@ namespace HotelLibrary.Rooms.UpdateRooms
                         var displayOldRoomType = dbRoomTypeUpdate.Rooms
                             .Where(r => r.RoomId == roomId)
                             .ToList();
-                        Console.WriteLine("Nuvarande rums typen");
+                        Console.WriteLine("Nuvarande rumstypen");
                         Console.WriteLine("-----------------------------");
                         foreach (var room in displayOldRoomType)
                         {
-                            Console.WriteLine($"Rums nummer: {roomTypeToUpdate.RoomNumber}");
+                            Console.WriteLine($"Rumsnummer: {roomTypeToUpdate.RoomNumber}");
                             Console.WriteLine($"Rums typ: {roomTypeToUpdate.RoomType}");
 
                             Console.WriteLine("-----------------------------");
 
                         }
 
-                        roomTypeToUpdate.RoomType = CreateRoom.RoomTypeSwitch();
+                        roomTypeToUpdate.RoomType = RoomCreate.RoomTypeSwitch();
                         if (roomTypeToUpdate.RoomType != null && roomTypeToUpdate.RoomType != "0")
                         {
                             dbRoomTypeUpdate.SaveChanges();
                             Console.WriteLine($"Rums typen har ändrats till {roomTypeToUpdate.RoomType}");
-                            Console.WriteLine("Tryck på enter för att forstätta...");
                         }
                     }
                 }

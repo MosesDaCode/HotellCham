@@ -28,21 +28,23 @@ namespace HotelLibrary.Rooms.UpdateRooms
                         var displayOldRoomDesc = dbRoomDescUpdate.Rooms
                             .Where(r => r.RoomId == roomId)
                             .ToList();
-                        Console.WriteLine("Nuvarande rums beskrivning");
+                        Console.WriteLine("Nuvarande rumsbeskrivning");
                         Console.WriteLine("-----------------------------");
                         foreach (var room in displayOldRoomDesc)
                         {
-                            Console.WriteLine($"Rums nummer: {roomDescToUpdate.RoomNumber}");
-                            Console.WriteLine($"Rums beskrivning: {roomDescToUpdate.Description}");
+                            Console.WriteLine($"Rumsnummer: {roomDescToUpdate.RoomNumber}");
+                            Console.WriteLine($"Rumsbeskrivning: {roomDescToUpdate.Description}");
 
                             Console.WriteLine("-----------------------------");
                         }
-                        Console.Write("\nSkriv en ny rums beskrivning: ");
+                        Console.Write("\nSkriv en ny rumsbeskrivning: ");
                         roomDescToUpdate.Description = Console.ReadLine();
                         if (roomDescToUpdate.Description != "0")
                         {
                             dbRoomDescUpdate.SaveChanges();
-                            Console.WriteLine($"\nRum: {roomDescToUpdate.RoomNumber} är nu {roomDescToUpdate.RoomSize} KVM.");
+                            Console.WriteLine($"\nNy rumsbeskrivning:" +
+                                $"\n--------------------------------------" +
+                                $"\n{roomDescToUpdate.Description}.");
                         }
                         else if (roomDescToUpdate.Description == "0")
                         {

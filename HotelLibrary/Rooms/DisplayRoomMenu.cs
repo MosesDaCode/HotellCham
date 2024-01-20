@@ -1,6 +1,8 @@
-﻿using HotelLibrary.Rooms.DeleteRooms;
+﻿using HotelLibrary.Rooms.CreateRoom;
+using HotelLibrary.Rooms.DeleteRooms;
 using HotelLibrary.Rooms.ReadingRooms;
 using HotelLibrary.Rooms.UpdateRooms;
+using HotelLibrary.Rooms.ReActivateRoom;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +22,7 @@ namespace HotelLibrary.Rooms
                 switch (DisplayMenu.WriteRoomMenu())
                 {
                     case "1":
-                        CreateRoom.CreatingRoom();
+                        RoomCreate.CreatingRoom();
                         break;
                     case "2":
                         DisplayReadRoomMenu.ReadRooms();
@@ -32,7 +34,7 @@ namespace HotelLibrary.Rooms
                         SoftDeleteRooms.SoftDeleteRoom();
                         break;
                     case "5":
-                        ReActivateRoom.GetBackRoom();
+                        RoomReActivate.GetBackRoom();
                         break;
                     case "6":
                         RoomDelete.DeleteRoom();

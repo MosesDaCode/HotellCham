@@ -1,4 +1,6 @@
-﻿using HotelLibrary.Bookings.ReadingBookings;
+﻿using HotelLibrary.Bookings.CreateBooking;
+using HotelLibrary.Bookings.DeleteBooking;
+using HotelLibrary.Bookings.ReadingBookings;
 using HotelLibrary.Bookings.UpdateBookings;
 using System;
 using System.Collections.Generic;

@@ -40,7 +40,7 @@ namespace HotelLibrary.Guests
                                 guestToUpdate.Phone = Console.ReadLine();
                                 if (!string.IsNullOrEmpty(guestToUpdate.Phone) && guestToUpdate.Phone != "0")
                                 {
-                                    Console.WriteLine("\nAlternativt, annars tryck eneter!");
+                                    Console.WriteLine("\nAlternativt, annars tryck enter!");
                                     Console.Write("Ange en ny hemadress: ");
                                     guestToUpdate.Adress = Console.ReadLine();
                                     if (guestToUpdate.Adress != "0" && !string.IsNullOrEmpty(guestToUpdate.Adress))
@@ -79,9 +79,11 @@ namespace HotelLibrary.Guests
                                     }
                                     else if (string.IsNullOrEmpty(guestToUpdate.Adress))
                                     {
-                                        Console.WriteLine($"\nInfo om {guestToUpdate.LastName}, {guestToUpdate.FirstName} är ändrad.");
+                                        guestToUpdate.Country = string.Empty;
+                                        guestToUpdate.City = string.Empty;
                                         dbGuestUpdate.SaveChanges();
-                                        Console.ReadLine();
+                                        Console.WriteLine($"\nInfo om {guestToUpdate.LastName}, {guestToUpdate.FirstName} är ändrad.");
+                                        Console.ReadKey();
                                     }
                                     else if (guestToUpdate.Adress == "0")
                                     {

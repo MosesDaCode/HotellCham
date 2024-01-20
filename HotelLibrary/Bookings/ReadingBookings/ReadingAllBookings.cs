@@ -21,9 +21,9 @@ namespace HotelLibrary.Bookings.ReadingBookings
                          b.BookingID,
                          b.RoomId,
                          b.TotalPrice,
-                         b.IsCheckedIn,
                          b.ExtraBed,
-                         b.IsPaid,
+                         b.CheckInDate,
+                         b.CheckOutDate,
                          r.RoomNumber,
                          r.Capacity,
                          r.RoomType,
@@ -42,14 +42,14 @@ namespace HotelLibrary.Bookings.ReadingBookings
                         Console.WriteLine("---------------------------------------------------------------------------");
                         Console.WriteLine($"Gäst: {bookings.LastName}, {bookings.FirstName}");
                         Console.WriteLine($"Rumsnummer: {bookings.RoomNumber}");
+                        Console.WriteLine($"Incheckning: {bookings.CheckInDate}");
+                        Console.WriteLine($"Utcheckning: {bookings.CheckOutDate}");
                         Console.WriteLine($"Antal gäster: {bookings.Capacity}");
                         Console.WriteLine($"Extra säng: {bookings.ExtraBed}");
                         Console.WriteLine($"Rums typ: {bookings.RoomType}");
                         Console.WriteLine($"Rums beskrivning: {bookings.Description}");
                         Console.WriteLine($"Pris per natt: {bookings.PricePerNight}");
                         Console.WriteLine($"TotalPris: {bookings.TotalPrice}");
-                        Console.WriteLine($"Checkat in: {bookings.IsCheckedIn}");
-                        Console.WriteLine($"Betalat: {bookings.IsPaid}");
                         Console.WriteLine("---------------------------------------------------------------------------");
                     }
                 }

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using HotelLibrary.Build.Service;
 using HotelLibrary.Guests.ReadGuests;
 
-namespace HotelLibrary.Guests
+namespace HotelLibrary.Guests.ReActivateGuest
 {
-    public class ReActiveateGuest
+    public class GuestReActivate
     {
         public static void GetGuestBack()
         {
