@@ -16,20 +16,30 @@ namespace HotelLibrary.Invoices
                 switch (DisplayMenu.WriteInvoiceMenu())
                 {
                     case "1":
-                        //Pay Invoice
-                        break;
+                        Console.WriteLine("Under Konstruktion,Tryck på enter för att gå tillbaka till huvudmenyn!!");
+                        Console.ReadKey();
+                        Console.Clear();
+                        return;
                     case "2":
-                        //Create Invoice
-                        break;
+                        Console.WriteLine("Under Konstruktion,Tryck på enter för att gå tillbaka till huvudmenyn!!");
+                        Console.ReadKey();
+                        Console.Clear();
+                        return;
                     case "3":
-                        //Read Invoice
-                        break;
+                        Console.WriteLine("Under Konstruktion,Tryck på enter för att gå tillbaka till huvudmenyn!!");
+                        Console.ReadKey();
+                        Console.Clear();
+                        return;
                     case "4":
-                        //Edit Invoice
-                        break;
+                        Console.WriteLine("Under Konstruktion,Tryck på enter för att gå tillbaka till huvudmenyn!!");
+                        Console.ReadKey();
+                        Console.Clear();
+                        return;
                     case "5":
-                        //Delete Invoice
-                        break;
+                        Console.WriteLine("Under Konstruktion,Tryck på enter för att gå tillbaka till huvudmenyn!!");
+                        Console.ReadKey();
+                        Console.Clear();
+                        return;
                     case "0":
                         Console.Clear();
                         isInvoice = false;
