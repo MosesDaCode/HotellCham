@@ -1,11 +1,11 @@
 # HotellCham
 
-HotellCham är ett hotellsystem utvecklat i C# för att effektivt hantera bokningar, gäster, fakturering och rum. Systemet använder CRUD-operationer (Create, Read, Update, Delete) för att hantera data på ett strukturerat och användarvänligt sätt.
+HotellCham is a hotel management system developed in C# to efficiently manage bookings, guests, billing, and rooms. The system uses CRUD operations (Create, Read, Update, Delete) to handle data in a structured and user-friendly manner.
 
-## Funktioner
+## Features
 
-- **Bokningshantering**: Skapa, visa, uppdatera och ta bort bokningar.
-- **Gästhantering**: Spara, läs, uppdatera och radera gästinformation.
-- **Faktureringssystem**: Generera, visa, uppdatera och ta bort fakturor.
-- **Rumshantering**: Hantera rumstillgänglighet genom att skapa, läsa, uppdatera och radera rumsdata.
-- **Rapporter**: Skapa och visa olika rapporter för hotellhantering.
+- **Booking Management**: Create, view, update, and delete bookings.
+- **Guest Management**: Save, read, update, and delete guest information.
+- **Billing System**: Generate, view, update, and delete invoices.
+- **Room Management**: Manage room availability by creating, reading, updating, and deleting room data.
+- **Reports**: Create and view various management reports.
